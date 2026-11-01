@@ -1,77 +1,42 @@
-name: Build DrumPads iOS (Simulator & IPA)
+name: Build DrumPads IPA
 
 on:
   push:
-    branches: [main, master]
+    branches: [main]
   workflow_dispatch:
-
-permissions:
-  contents: write
 
 jobs:
   build:
-    name: Build Simulator & IPA
+    name: Build & Package DrumPads IPA
     runs-on: macos-latest
 
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
-      - name: Build for iOS Simulator (For Web Appetize.io)
-        run: |
-          xcodebuild build \
-            -project DrumPadsApp.xcodeproj \
-            -scheme DrumPadsApp \
-            -sdk iphonesimulator \
-            -configuration Release \
-            -derivedDataPath build_sim \
-            CODE_SIGNING_ALLOWED=NO \
-            CODE_SIGNING_REQUIRED=NO \
-            CODE_SIGN_IDENTITY=""
-          cd build_sim/Build/Products/Release-iphonesimulator
-          zip -r -9 DrumPadsApp-Simulator.zip DrumPadsApp.app
-          mv DrumPadsApp-Simulator.zip "$GITHUB_WORKSPACE/"
-
-      - name: Build for iPhone Device (For Sideloadly)
+      - name: Build iOS Application (Release)
         run: |
           xcodebuild build \
             -project DrumPadsApp.xcodeproj \
             -scheme DrumPadsApp \
             -sdk iphoneos \
+            -destination 'generic/platform=iOS' \
             -configuration Release \
             -derivedDataPath build_device \
             CODE_SIGNING_ALLOWED=NO \
             CODE_SIGNING_REQUIRED=NO \
             CODE_SIGN_IDENTITY=""
+
+      - name: Package Payload and IPA
+        run: |
           mkdir -p Payload
           cp -R build_device/Build/Products/Release-iphoneos/DrumPadsApp.app Payload/
-          codesign --force --deep --sign - Payload/DrumPadsApp.app
+          codesign --force --deep --sign - Payload/DrumPadsApp.app || true
           zip -r -9 DrumPadsApp.ipa Payload
-          mv DrumPadsApp.ipa "$GITHUB_WORKSPACE/"
 
-      - name: Upload Simulator Build (Appetize.io)
-        uses: actions/upload-artifact@v4
-        with:
-          name: DrumPadsApp-Simulator
-          path: DrumPadsApp-Simulator.zip
-          retention-days: 14
-
-      - name: Upload Device IPA (Sideloadly)
+      - name: Upload DrumPadsApp-IPA
         uses: actions/upload-artifact@v4
         with:
           name: DrumPadsApp-IPA
           path: DrumPadsApp.ipa
           retention-days: 14
-
-      - name: Publish to GitHub Release (Direct Download)
-        uses: softprops/action-gh-release@v2
-        if: success()
-        with:
-          tag_name: latest
-          name: "DrumPads 24 iOS Build"
-          prerelease: false
-          files: |
-            DrumPadsApp.ipa
-            DrumPadsApp-Simulator.zip
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
