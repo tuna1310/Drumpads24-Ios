@@ -1,7 +1,7 @@
 import SwiftUI
 
 public struct FeedScreen: View {
-    @Bindable public var store: DrumPadsStore
+    public var store: DrumPadsStore
     @State private var selectedFilter: String = "Featured"
     private let filterTabs = ["Featured", "Following", "Latest"]
     private let genreTags = ["Old Town Road", "Chillhop", "Phonk", "Trap", "Lo-Fi"]

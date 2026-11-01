@@ -60,7 +60,7 @@ public enum FeedCatalog {
             trackTitle: "Midnight Velocity",
             genre: "EDM",
             likesCount: 142,
-            isLiked = false,
+            isLiked: false,
             commentsCount: 23,
             gradientHexes: ["#FF007F", "#7928CA"]
         ),
@@ -74,7 +74,7 @@ public enum FeedCatalog {
             trackTitle: "Fill & Clean Tutorial",
             genre: "Masterclass",
             likesCount: 389,
-            isLiked = true,
+            isLiked: true,
             commentsCount: 45,
             gradientHexes: ["#00F5D4", "#00B0FF"]
         ),
@@ -88,7 +88,7 @@ public enum FeedCatalog {
             trackTitle: "Rainy Sunday Morning",
             genre: "Lo-Fi",
             likesCount: 215,
-            isLiked = false,
+            isLiked: false,
             commentsCount: 31,
             gradientHexes: ["#F12711", "#F5AF19"]
         ),
@@ -102,10 +102,9 @@ public enum FeedCatalog {
             trackTitle: "Relentless Grind",
             genre: "Trap",
             likesCount: 182,
-            isLiked = false,
+            isLiked: false,
             commentsCount: 19,
             gradientHexes: ["#8A2387", "#E94057"]
         )
     ]
 }
-

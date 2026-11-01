@@ -1,7 +1,7 @@
 import SwiftUI
 
 public struct SettingsScreen: View {
-    @Bindable public var store: DrumPadsStore
+    public var store: DrumPadsStore
     @State private var unlockAllSounds: Bool = false
 
     public init(store: DrumPadsStore) {

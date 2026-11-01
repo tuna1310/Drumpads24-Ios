@@ -2,7 +2,7 @@ import SwiftUI
 import UniformTypeIdentifiers
 
 public struct PadEditorScreen: View {
-    @Bindable public var store: DrumPadsStore
+    public var store: DrumPadsStore
     @State private var selectedIndex: Int
     @State private var padName: String = ""
     @State private var volume: Float = 1.0
@@ -310,7 +310,7 @@ public struct PadEditorScreen: View {
 // PROJECT EDITOR SCREEN (Custom Sound Packs)
 // -------------------------------------------------------------
 public struct ProjectEditorView: View {
-    @Bindable public var store: DrumPadsStore
+    public var store: DrumPadsStore
     @State private var projectName: String = "My Custom Pack"
     @State private var selectedGenre: Genre = .edm
     @State private var bpm: Int = 120

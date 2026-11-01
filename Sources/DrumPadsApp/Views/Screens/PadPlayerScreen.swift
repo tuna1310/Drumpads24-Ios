@@ -1,7 +1,7 @@
 import SwiftUI
 
 public struct PadPlayerScreen: View {
-    @Bindable public var store: DrumPadsStore
+    public var store: DrumPadsStore
 
     public init(store: DrumPadsStore) {
         self.store = store
@@ -435,7 +435,7 @@ private struct QuickFxBar: View {
 // 4. MAIN GLOWING NEON PADS GRID
 // -------------------------------------------------------------
 private struct GlowingPadsGridView: View {
-    @Bindable var store: DrumPadsStore
+    var store: DrumPadsStore
     let selectedBank: PadBank
 
     var body: some View {

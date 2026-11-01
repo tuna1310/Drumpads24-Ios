@@ -40,7 +40,6 @@ public final class AudioRecorder: @unchecked Sendable {
 
         guard !pcmCopy.isEmpty else { return nil }
 
-        // Write WAV file to Documents directory
         let fileManager = FileManager.default
         let docs = fileManager.urls(for: .documentDirectory, in: .userDomainMask)[0]
         let recordingsDir = docs.appendingPathComponent("Recordings", isDirectory: true)
@@ -68,17 +67,16 @@ public final class AudioRecorder: @unchecked Sendable {
         let subchunk2Size = Int32(pcm.count * 2)
         let chunkSize = 36 + subchunk2Size
 
-        // RIFF header
-        data.append(contentsOf: "RIFF".utf8)
+        data.append(contentsOf: [UInt8]("RIFF".utf8))
         var cSize = chunkSize
         data.append(Data(bytes: &cSize, count: 4))
-        data.append(contentsOf: "WAVE".utf8)
 
-        // fmt chunk
-        data.append(contentsOf: "fmt ".utf8)
+        data.append(contentsOf: [UInt8]("WAVE".utf8))
+        data.append(contentsOf: [UInt8]("fmt ".utf8))
+
         var subchunk1Size: Int32 = 16
         data.append(Data(bytes: &subchunk1Size, count: 4))
-        var audioFormat: Int16 = 1 // PCM
+        var audioFormat: Int16 = 1
         data.append(Data(bytes: &audioFormat, count: 2))
         var numChannels = channels
         data.append(Data(bytes: &numChannels, count: 2))
@@ -91,16 +89,13 @@ public final class AudioRecorder: @unchecked Sendable {
         var bitsPerSample: Int16 = 16
         data.append(Data(bytes: &bitsPerSample, count: 2))
 
-        // data chunk
-        data.append(contentsOf: "data".utf8)
+        data.append(contentsOf: [UInt8]("data".utf8))
         var s2Size = subchunk2Size
         data.append(Data(bytes: &s2Size, count: 4))
 
-        // PCM bytes
         pcm.withUnsafeBufferPointer { buffer in
             if let baseAddress = buffer.baseAddress {
-                let bytePtr = UnsafeRawPointer(baseAddress).assumingMemoryBound(to: UInt8.self)
-                data.append(bytePtr, count: pcm.count * 2)
+                data.append(UnsafeBufferPointer(start: UnsafeRawPointer(baseAddress).assumingMemoryBound(to: UInt8.self), count: pcm.count * 2))
             }
         }
 
@@ -108,9 +103,8 @@ public final class AudioRecorder: @unchecked Sendable {
             try data.write(to: url)
             return true
         } catch {
-            print("[AudioRecorder] Failed to write WAV file: \(error)")
+            print("[AudioRecorder] Failed to write WAV: \(error)")
             return false
         }
     }
 }
-

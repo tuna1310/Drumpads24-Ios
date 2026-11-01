@@ -1,7 +1,7 @@
 import SwiftUI
 
 public struct MyStudioScreen: View {
-    @Bindable public var store: DrumPadsStore
+    public var store: DrumPadsStore
     @State private var isShowingRecordingsSheet: Bool = false
 
     public init(store: DrumPadsStore) {
@@ -200,7 +200,7 @@ private struct LibraryMenuRow: View {
 // RECORDINGS SHEET VIEW
 // -------------------------------------------------------------
 public struct RecordingsSheetView: View {
-    @Bindable public var store: DrumPadsStore
+    public var store: DrumPadsStore
     @Environment(\.dismiss) private var dismiss
 
     public var body: some View {

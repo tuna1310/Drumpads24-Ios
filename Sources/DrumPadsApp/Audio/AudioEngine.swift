@@ -1,5 +1,8 @@
 import Foundation
 import AVFoundation
+#if canImport(Darwin)
+import Darwin
+#endif
 
 public final class AudioEngine: @unchecked Sendable {
     public static let shared = AudioEngine()
@@ -113,7 +116,6 @@ public final class AudioEngine: @unchecked Sendable {
     public var currentXRunCount: Int { xrunCount }
 
     public func triggerFill() {
-        // Generates rapid rhythmic drum rolls on snare (2) and toms (18, 19)
         for i in 0..<4 {
             DispatchQueue.global().asyncAfter(deadline: .now() + Double(i) * 0.08) { [weak self] in
                 self?.triggerPad(i % 2 == 0 ? 2 : 19)
@@ -122,7 +124,6 @@ public final class AudioEngine: @unchecked Sendable {
     }
 
     public func triggerClean() {
-        // Instantly dry the DSP chain
         echo116Level = 0.0
         echo18Level = 0.0
         distortionLevel = 0.0
@@ -132,7 +133,6 @@ public final class AudioEngine: @unchecked Sendable {
     }
 
     private func renderAudio(left: UnsafeMutablePointer<Float>, right: UnsafeMutablePointer<Float>, frames: Int) {
-        // 1. Stress test injection
         if isStressTestActive {
             let now = DispatchTime.now().uptimeNanoseconds
             let elapsedSec = (now - stressTestStartNs) / 1_000_000_000
@@ -151,7 +151,6 @@ public final class AudioEngine: @unchecked Sendable {
             }
         }
 
-        // 2. Consume NoteOn commands from lock-free queue
         while let event = commandQueue.pop() {
             let sample = samples[event.padIndex]
             if !sample.isEmpty {
@@ -159,13 +158,11 @@ public final class AudioEngine: @unchecked Sendable {
             }
         }
 
-        // 3. Clear output pointers
         for i in 0..<frames {
             left[i] = 0.0
             right[i] = 0.0
         }
 
-        // 4. Mix active voices
         for v in 0..<VoicePool.maxVoices {
             guard voicePool.voices[v].isActive else { continue }
             let total = voicePool.voices[v].totalFrames
@@ -185,14 +182,13 @@ public final class AudioEngine: @unchecked Sendable {
             }
         }
 
-        // 5. Apply DSP Effects (Delay, Distortion, Filter, Lo-Fi, Reverb)
-        let delay116Frames = 5512  // ~1/16 note at 120 BPM
-        let delay18Frames  = 11025 // ~1/8 note at 120 BPM
+        let delay116Frames = 5512
+        let delay18Frames  = 11025
         let delayBufSize = delayBufferL.count
 
         let dist = distortionLevel
-        let cutoff = max(0.05, min(1.0, filterCutoff))
-        let filterAlpha = 1.0 - exp(-2.0 * .pi * (cutoff * 16000.0) / 44100.0)
+        let cutoff = max(Float(0.05), min(Float(1.0), filterCutoff))
+        let filterAlpha = Float(1.0 - exp(-2.0 * Double.pi * Double(cutoff * 16000.0) / 44100.0))
         let lofi = lofiLevel
         let echo116 = echo116Level
         let echo18 = echo18Level
@@ -205,7 +201,6 @@ public final class AudioEngine: @unchecked Sendable {
             var l = left[i]
             var r = right[i]
 
-            // Delay / Echo
             let writePos = (delayWriteIndex + i) % delayBufSize
             if echo116 > 0 || echo18 > 0 || reverb > 0 {
                 let read116 = (writePos - delay116Frames + delayBufSize) % delayBufSize
@@ -217,44 +212,38 @@ public final class AudioEngine: @unchecked Sendable {
                 l += echoSignalL
                 r += echoSignalR
 
-                // Reverb diffusion feedback
-                let reverbFeedback = min(0.65, reverb * 0.6)
-                delayBufferL[writePos] = left[i] + echoSignalL * 0.35 + delayBufferL[read18] * reverbFeedback
-                delayBufferR[writePos] = right[i] + echoSignalR * 0.35 + delayBufferR[read18] * reverbFeedback
+                let reverbFeedback = min(Float(0.65), reverb * Float(0.6))
+                delayBufferL[writePos] = left[i] + echoSignalL * Float(0.35) + delayBufferL[read18] * reverbFeedback
+                delayBufferR[writePos] = right[i] + echoSignalR * Float(0.35) + delayBufferR[read18] * reverbFeedback
             } else {
                 delayBufferL[writePos] = left[i]
                 delayBufferR[writePos] = right[i]
             }
 
-            // Distortion (Soft cubic overdrive)
             if dist > 0 {
                 let drive = 1.0 + dist * 3.5
-                l = tanh(l * drive)
-                r = tanh(r * drive)
+                l = Float(Darwin.tanh(Double(l * drive)))
+                r = Float(Darwin.tanh(Double(r * drive)))
             }
 
-            // Lo-Fi (Bit reduction & cassette warmth)
             if lofi > 0 {
-                let steps = max(4.0, 32.0 * (1.0 - lofi * 0.85))
-                l = round(l * Float(steps)) / Float(steps)
-                r = round(r * Float(steps)) / Float(steps)
+                let steps = max(Float(4.0), Float(32.0) * (1.0 - lofi * Float(0.85)))
+                l = round(l * steps) / steps
+                r = round(r * steps) / steps
             }
 
-            // Low-Pass Filter
             if cutoff < 0.98 {
-                filterStateL += Float(filterAlpha) * (l - filterStateL)
-                filterStateR += Float(filterAlpha) * (r - filterStateR)
+                filterStateL += filterAlpha * (l - filterStateL)
+                filterStateR += filterAlpha * (r - filterStateR)
                 l = filterStateL
                 r = filterStateR
             }
 
-            // Master Volume
             l *= vol
             r *= vol
 
-            // Soft Limiter / Anti-clipping
-            if l > 1.0 { l = 1.0 - exp(-l) } else if l < -1.0 { l = -1.0 + exp(l) }
-            if r > 1.0 { r = 1.0 - exp(-r) } else if r < -1.0 { r = -1.0 + exp(r) }
+            if l > 1.0 { l = Float(1.0 - exp(Double(-l))) } else if l < -1.0 { l = Float(-1.0 + exp(Double(l))) }
+            if r > 1.0 { r = Float(1.0 - exp(Double(-r))) } else if r < -1.0 { r = Float(-1.0 + exp(Double(r))) }
 
             left[i] = l
             right[i] = r
@@ -281,7 +270,7 @@ public final class AudioEngine: @unchecked Sendable {
             let freq = 100.0 + Double(p) * 20.0
             for i in 0..<length {
                 let t = Double(i) / sampleRate
-                let wave = sin(2.0 * .pi * freq * t) * exp(-t * 6.0)
+                let wave = sin(2.0 * Double.pi * freq * t) * exp(-t * 6.0)
                 buffer[i] = Float(wave)
             }
             samples[p] = buffer

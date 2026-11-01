@@ -1,7 +1,7 @@
 import SwiftUI
 
 public struct SoundsScreen: View {
-    @Bindable public var store: DrumPadsStore
+    public var store: DrumPadsStore
     @State private var selectedGenre: Genre = .all
     @State private var searchQuery: String = ""
 

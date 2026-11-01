@@ -79,7 +79,7 @@ private struct NavItemView: View {
             .padding(.vertical, 6)
             .background(
                 RoundedRectangle(cornerRadius: 20)
-                    .fill(isSelected ? AppTheme.navyCardElevated : Color.transparent)
+                    .fill(isSelected ? AppTheme.navyCardElevated : Color.clear)
             )
         }
         .buttonStyle(.plain)
@@ -130,7 +130,6 @@ public struct MiniPlayerBar: View {
             Image(systemName: "waveform")
                 .font(.system(size: 16))
                 .foregroundColor(isPlaying ? AppTheme.accentCyan : AppTheme.textMuted)
-                .symbolEffect(.variableColor.iterative, isActive: isPlaying)
         }
         .padding(.horizontal, 14)
         .padding(.vertical, 8)
@@ -146,8 +145,3 @@ public struct MiniPlayerBar: View {
         .padding(.bottom, 6)
     }
 }
-
-public extension Color {
-    static let transparent = Color.clear
-}
-

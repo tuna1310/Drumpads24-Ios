@@ -1,7 +1,7 @@
 import SwiftUI
 
 public struct AccountScreen: View {
-    @Bindable public var store: DrumPadsStore
+    public var store: DrumPadsStore
 
     public init(store: DrumPadsStore) {
         self.store = store
@@ -188,7 +188,7 @@ public struct AccountScreen: View {
 // EDIT PROFILE SCREEN
 // -------------------------------------------------------------
 public struct EditProfileScreen: View {
-    @Bindable public var store: DrumPadsStore
+    public var store: DrumPadsStore
     @State private var name: String = ""
     @State private var bio: String = ""
     @State private var link: String = ""

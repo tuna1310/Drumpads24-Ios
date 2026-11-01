@@ -1,7 +1,7 @@
 import SwiftUI
 
 public struct PaywallScreen: View {
-    @Bindable public var store: DrumPadsStore
+    public var store: DrumPadsStore
 
     public init(store: DrumPadsStore) {
         self.store = store
