@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 1,
+  "kitId": "starter-kit-24",
+  "name": "Starter 24-Pad Kit",
+  "description": "24-pad electronic starter sound kit with Drum, Bass, Melody, and FX",
+  "pads": [
+    { "index": 0, "name": "Kick Punch", "group": "DRUM", "color": "#E53935", "sampleId": "drum_kick_punch", "sampleFile": "samples/kick_punch.wav" },
+    { "index": 1, "name": "Kick Deep", "group": "DRUM", "color": "#E53935", "sampleId": "drum_kick_deep", "sampleFile": "samples/kick_deep.wav" },
+    { "index": 2, "name": "Snare Ac", "group": "DRUM", "color": "#E53935", "sampleId": "drum_snare_acoustic", "sampleFile": "samples/snare_acoustic.wav" },
+    { "index": 3, "name": "Snare El", "group": "DRUM", "color": "#E53935", "sampleId": "drum_snare_electro", "sampleFile": "samples/snare_electro.wav" },
+    { "index": 4, "name": "Hat Cl", "group": "DRUM", "color": "#E53935", "sampleId": "drum_hat_closed", "sampleFile": "samples/hat_closed.wav" },
+    { "index": 5, "name": "Hat Op", "group": "DRUM", "color": "#E53935", "sampleId": "drum_hat_open", "sampleFile": "samples/hat_open.wav" },
+
+    { "index": 6, "name": "Sub C", "group": "BASS", "color": "#8E24AA", "sampleId": "bass_sub_c", "sampleFile": "samples/bass_sub_c.wav" },
+    { "index": 7, "name": "Sub D", "group": "BASS", "color": "#8E24AA", "sampleId": "bass_sub_d", "sampleFile": "samples/bass_sub_d.wav" },
+    { "index": 8, "name": "Pluck E", "group": "BASS", "color": "#8E24AA", "sampleId": "bass_pluck_e", "sampleFile": "samples/bass_pluck_e.wav" },
+    { "index": 9, "name": "Pluck G", "group": "BASS", "color": "#8E24AA", "sampleId": "bass_pluck_g", "sampleFile": "samples/bass_pluck_g.wav" },
+    { "index": 10, "name": "Synth A", "group": "BASS", "color": "#8E24AA", "sampleId": "bass_synth_a", "sampleFile": "samples/bass_synth_a.wav" },
+    { "index": 11, "name": "Synth C", "group": "BASS", "color": "#8E24AA", "sampleId": "bass_synth_c", "sampleFile": "samples/bass_synth_c.wav" },
+
+    { "index": 12, "name": "Lead C4", "group": "MELODY", "color": "#00897B", "sampleId": "melody_lead_c4", "sampleFile": "samples/melody_lead_c4.wav" },
+    { "index": 13, "name": "Lead D4", "group": "MELODY", "color": "#00897B", "sampleId": "melody_lead_d4", "sampleFile": "samples/melody_lead_d4.wav" },
+    { "index": 14, "name": "Lead E4", "group": "MELODY", "color": "#00897B", "sampleId": "melody_lead_e4", "sampleFile": "samples/melody_lead_e4.wav" },
+    { "index": 15, "name": "Lead G4", "group": "MELODY", "color": "#00897B", "sampleId": "melody_lead_g4", "sampleFile": "samples/melody_lead_g4.wav" },
+    { "index": 16, "name": "Lead A4", "group": "MELODY", "color": "#00897B", "sampleId": "melody_lead_a4", "sampleFile": "samples/melody_lead_a4.wav" },
+    { "index": 17, "name": "Pluck C5", "group": "MELODY", "color": "#00897B", "sampleId": "melody_pluck_c5", "sampleFile": "samples/melody_pluck_c5.wav" },
+
+    { "index": 18, "name": "Tom Low", "group": "FX", "color": "#FB8C00", "sampleId": "fx_tom_low", "sampleFile": "samples/tom_low.wav" },
+    { "index": 19, "name": "Tom High", "group": "FX", "color": "#FB8C00", "sampleId": "fx_tom_high", "sampleFile": "samples/tom_high.wav" },
+    { "index": 20, "name": "Crash", "group": "FX", "color": "#FB8C00", "sampleId": "fx_crash", "sampleFile": "samples/fx_crash.wav" },
+    { "index": 21, "name": "Laser", "group": "FX", "color": "#FB8C00", "sampleId": "fx_laser", "sampleFile": "samples/fx_laser.wav" },
+    { "index": 22, "name": "Chant Hey", "group": "FX", "color": "#FB8C00", "sampleId": "fx_chant_hey", "sampleFile": "samples/vocal_chant_hey.wav" },
+    { "index": 23, "name": "Chop Oh", "group": "FX", "color": "#FB8C00", "sampleId": "fx_chop_oh", "sampleFile": "samples/vocal_chop_oh.wav" }
+  ]
+}

@@ -1,0 +1,25 @@
+stages:
+  - build
+
+build-ipa:
+  stage: build
+  tags:
+    - macos
+    - saas-macos-medium-m1
+  before_script:
+    - brew install xcodegen
+  script:
+    - cd drumpads-ios || true
+    - xcodegen generate
+    - xcodebuild build -project DrumPadsApp.xcodeproj -scheme DrumPadsApp -configuration Release -sdk iphoneos -derivedDataPath build CODE_SIGNING_ALLOWED=NO CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY=""
+    - mkdir -p Payload
+    - cp -R build/Build/Products/Release-iphoneos/DrumPadsApp.app Payload/
+    - codesign --force --deep --sign - Payload/DrumPadsApp.app
+    - zip -r -9 DrumPadsApp.ipa Payload
+  artifacts:
+    name: DrumPadsApp-ipa
+    paths:
+      - drumpads-ios/DrumPadsApp.ipa
+      - DrumPadsApp.ipa
+    expire_in: 14 days
+

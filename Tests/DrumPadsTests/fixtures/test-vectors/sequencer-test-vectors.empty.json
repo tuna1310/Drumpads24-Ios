@@ -1,0 +1,6 @@
+{
+  "schemaVersion": 1,
+  "description": "Empty structured test vector fixture for M4 sequencer test cases",
+  "ppq": 960,
+  "testCases": []
+}

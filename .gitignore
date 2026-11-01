@@ -1,0 +1,19 @@
+# Xcode
+.DS_Store
+*/build/
+build/
+DerivedData/
+*.xcodeproj/xcuserdata/
+*.xcodeproj/project.xcworkspace/xcuserdata/
+*.xcuserdatad
+*.xcworkspace
+!default.xcworkspace
+
+# Swift Package Manager
+.build/
+.swiftpm/
+
+# Sideloadly / IPA artifacts
+*.ipa
+Payload/
+*.zip
