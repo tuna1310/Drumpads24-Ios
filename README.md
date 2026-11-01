@@ -60,3 +60,4 @@ DrumPads 24AppIOS/
    * **Cài đặt (Settings) > Cài đặt chung (General) > Quản lý VPN & Thiết bị (VPN & Device Management)**.
    * Bấm vào email Apple ID của bạn và chọn **Tin cậy (Trust)**.
 6. Mở app **Drum Pads 24** và trải nghiệm!
+
