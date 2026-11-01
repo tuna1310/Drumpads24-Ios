@@ -1,0 +1,425 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		DPA0000000000000000003EA /* AudioEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = DPA0000000000000000003E9 /* AudioEngine.swift */; };
+		DPA0000000000000000003EC /* LockFreeQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = DPA0000000000000000003EB /* LockFreeQueue.swift */; };
+		DPA0000000000000000003EE /* VoicePool.swift in Sources */ = {isa = PBXBuildFile; fileRef = DPA0000000000000000003ED /* VoicePool.swift */; };
+		DPA0000000000000000003F0 /* DrumPadsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = DPA0000000000000000003EF /* DrumPadsApp.swift */; };
+		DPA0000000000000000003F2 /* Pad.swift in Sources */ = {isa = PBXBuildFile; fileRef = DPA0000000000000000003F1 /* Pad.swift */; };
+		DPA0000000000000000003F4 /* PadGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = DPA0000000000000000003F3 /* PadGroup.swift */; };
+		DPA0000000000000000003F6 /* PadRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = DPA0000000000000000003F5 /* PadRepository.swift */; };
+		DPA0000000000000000003F8 /* starter in Resources */ = {isa = PBXBuildFile; fileRef = DPA0000000000000000003F7 /* starter */; };
+		DPA0000000000000000003FA /* HapticService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DPA0000000000000000003F9 /* HapticService.swift */; };
+		DPA0000000000000000003FC /* DrumPadsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = DPA0000000000000000003FB /* DrumPadsStore.swift */; };
+		DPA0000000000000000003FE /* DrumPadsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DPA0000000000000000003FD /* DrumPadsView.swift */; };
+		DPA000000000000000000400 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DPA0000000000000000003FF /* SettingsView.swift */; };
+		DPA000000000000000000403 /* EmptyFixtureTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DPA000000000000000000402 /* EmptyFixtureTests.swift */; };
+		DPA000000000000000000405 /* PadMappingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DPA000000000000000000404 /* PadMappingTests.swift */; };
+		DPA000000000000000000407 /* VoicePoolTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DPA000000000000000000406 /* VoicePoolTests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		DPA0000000000000000003E9 /* AudioEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "AudioEngine.swift"; path = "Sources/DrumPadsApp/Audio/AudioEngine.swift"; sourceTree = "<group>"; };
+		DPA0000000000000000003EB /* LockFreeQueue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "LockFreeQueue.swift"; path = "Sources/DrumPadsApp/Audio/LockFreeQueue.swift"; sourceTree = "<group>"; };
+		DPA0000000000000000003ED /* VoicePool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "VoicePool.swift"; path = "Sources/DrumPadsApp/Audio/VoicePool.swift"; sourceTree = "<group>"; };
+		DPA0000000000000000003EF /* DrumPadsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "DrumPadsApp.swift"; path = "Sources/DrumPadsApp/DrumPadsApp.swift"; sourceTree = "<group>"; };
+		DPA0000000000000000003F1 /* Pad.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Pad.swift"; path = "Sources/DrumPadsApp/Models/Pad.swift"; sourceTree = "<group>"; };
+		DPA0000000000000000003F3 /* PadGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "PadGroup.swift"; path = "Sources/DrumPadsApp/Models/PadGroup.swift"; sourceTree = "<group>"; };
+		DPA0000000000000000003F5 /* PadRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "PadRepository.swift"; path = "Sources/DrumPadsApp/Models/PadRepository.swift"; sourceTree = "<group>"; };
+		DPA0000000000000000003F7 /* starter */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "starter"; path = "Sources/DrumPadsApp/Resources/starter"; sourceTree = "<group>"; };
+		DPA0000000000000000003F9 /* HapticService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "HapticService.swift"; path = "Sources/DrumPadsApp/Services/HapticService.swift"; sourceTree = "<group>"; };
+		DPA0000000000000000003FB /* DrumPadsStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "DrumPadsStore.swift"; path = "Sources/DrumPadsApp/ViewModels/DrumPadsStore.swift"; sourceTree = "<group>"; };
+		DPA0000000000000000003FD /* DrumPadsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "DrumPadsView.swift"; path = "Sources/DrumPadsApp/Views/DrumPadsView.swift"; sourceTree = "<group>"; };
+		DPA0000000000000000003FF /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "SettingsView.swift"; path = "Sources/DrumPadsApp/Views/SettingsView.swift"; sourceTree = "<group>"; };
+		DPA000000000000000000401 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Info.plist"; path = "Info.plist"; sourceTree = "<group>"; };
+		DPA000000000000000000402 /* EmptyFixtureTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "EmptyFixtureTests.swift"; path = "Tests/DrumPadsTests/EmptyFixtureTests.swift"; sourceTree = "<group>"; };
+		DPA000000000000000000404 /* PadMappingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "PadMappingTests.swift"; path = "Tests/DrumPadsTests/PadMappingTests.swift"; sourceTree = "<group>"; };
+		DPA000000000000000000406 /* VoicePoolTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "VoicePoolTests.swift"; path = "Tests/DrumPadsTests/VoicePoolTests.swift"; sourceTree = "<group>"; };
+		200100000000000000000001 /* DrumPadsApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DrumPadsApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		200100000000000000000002 /* DrumPadsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DrumPadsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		5001 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5002 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		0001 /* Main Group */ = {
+			isa = PBXGroup;
+			children = (
+				0002 /* Sources */,
+				0003 /* Tests */,
+				DPA000000000000000000401 /* Info.plist */,
+				0004 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		0002 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				DPA0000000000000000003E9 /* AudioEngine.swift */,
+				DPA0000000000000000003EB /* LockFreeQueue.swift */,
+				DPA0000000000000000003ED /* VoicePool.swift */,
+				DPA0000000000000000003EF /* DrumPadsApp.swift */,
+				DPA0000000000000000003F1 /* Pad.swift */,
+				DPA0000000000000000003F3 /* PadGroup.swift */,
+				DPA0000000000000000003F5 /* PadRepository.swift */,
+				DPA0000000000000000003F7 /* starter */,
+				DPA0000000000000000003F9 /* HapticService.swift */,
+				DPA0000000000000000003FB /* DrumPadsStore.swift */,
+				DPA0000000000000000003FD /* DrumPadsView.swift */,
+				DPA0000000000000000003FF /* SettingsView.swift */,
+				200100000000000000000001 /* DrumPadsApp.app */,
+			);
+			name = Sources;
+			sourceTree = "<group>";
+		};
+		0003 /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				DPA000000000000000000402 /* EmptyFixtureTests.swift */,
+				DPA000000000000000000404 /* PadMappingTests.swift */,
+				DPA000000000000000000406 /* VoicePoolTests.swift */,
+				200100000000000000000002 /* DrumPadsTests.xctest */,
+			);
+			name = Tests;
+			sourceTree = "<group>";
+		};
+		0004 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				200100000000000000000001 /* DrumPadsApp.app */,
+				200100000000000000000002 /* DrumPadsTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		4001 /* DrumPadsApp */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7001 /* Build configuration list for PBXNativeTarget "DrumPadsApp" */;
+			buildPhases = (
+				8001 /* Sources */,
+				5001 /* Frameworks */,
+				8002 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = DrumPadsApp;
+			productName = DrumPadsApp;
+			productReference = 200100000000000000000001 /* DrumPadsApp.app */;
+			productType = "com.apple.product-type.application";
+		};
+		4002 /* DrumPadsTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7002 /* Build configuration list for PBXNativeTarget "DrumPadsTests" */;
+			buildPhases = (
+				8003 /* Sources */,
+				5002 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				9001 /* PBXTargetDependency */,
+			);
+			name = DrumPadsTests;
+			productName = DrumPadsTests;
+			productReference = 200100000000000000000002 /* DrumPadsTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		0000 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1500;
+				LastUpgradeCheck = 1500;
+				TargetAttributes = {
+					4001 = {
+						CreatedOnToolsVersion = 15.0;
+					};
+					4002 = {
+						CreatedOnToolsVersion = 15.0;
+						TestTargetID = 4001;
+					};
+				};
+			};
+			buildConfigurationList = 7003 /* Build configuration list for PBXProject "DrumPadsApp" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 0001 /* Main Group */;
+			productRefGroup = 0004 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				4001 /* DrumPadsApp */,
+				4002 /* DrumPadsTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		8002 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DPA0000000000000000003F8 /* starter in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		8001 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DPA0000000000000000003EA /* in Sources */,
+				DPA0000000000000000003EC /* in Sources */,
+				DPA0000000000000000003EE /* in Sources */,
+				DPA0000000000000000003F0 /* in Sources */,
+				DPA0000000000000000003F2 /* in Sources */,
+				DPA0000000000000000003F4 /* in Sources */,
+				DPA0000000000000000003F6 /* in Sources */,
+				DPA0000000000000000003FA /* in Sources */,
+				DPA0000000000000000003FC /* in Sources */,
+				DPA0000000000000000003FE /* in Sources */,
+				DPA000000000000000000400 /* in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8003 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DPA000000000000000000403 /* in Sources */,
+				DPA000000000000000000405 /* in Sources */,
+				DPA000000000000000000407 /* in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		9001 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 4001 /* DrumPadsApp */;
+			targetProxy = 9002 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXContainerItemProxy section */
+		9002 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0000 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4001;
+			remoteInfo = DrumPadsApp;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin XCBuildConfiguration section */
+		7004 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGNING_ALLOWED = NO;
+				CODE_SIGNING_REQUIRED = NO;
+				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Drum Pads 24";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.drumpads.ios;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.9;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		7005 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGNING_ALLOWED = NO;
+				CODE_SIGNING_REQUIRED = NO;
+				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Drum Pads 24";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.drumpads.ios;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.9;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		7006 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGNING_ALLOWED = NO;
+				CODE_SIGNING_REQUIRED = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MARKETING_VERSION = 1.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.drumpads.iosTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.9;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DrumPadsApp.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/DrumPadsApp";
+			};
+			name = Debug;
+		};
+		7007 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGNING_ALLOWED = NO;
+				CODE_SIGNING_REQUIRED = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MARKETING_VERSION = 1.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.drumpads.iosTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.9;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DrumPadsApp.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/DrumPadsApp";
+			};
+			name = Release;
+		};
+		7008 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		7009 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		7001 /* Build configuration list for PBXNativeTarget "DrumPadsApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7004 /* Debug */,
+				7005 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		7002 /* Build configuration list for PBXNativeTarget "DrumPadsTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7006 /* Debug */,
+				7007 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		7003 /* Build configuration list for PBXProject "DrumPadsApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7008 /* Debug */,
+				7009 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 0000 /* Project object */;
+}
