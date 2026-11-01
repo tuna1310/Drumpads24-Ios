@@ -43,6 +43,8 @@
 	<array>
 		<string>audio</string>
 	</array>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>Drum Pads 24 requires microphone access to record custom audio samples for your pads.</string>
 </dict>
 </plist>
 

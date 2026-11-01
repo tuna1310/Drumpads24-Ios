@@ -22,6 +22,23 @@
 		DPA000000000000000000403 /* EmptyFixtureTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DPA000000000000000000402 /* EmptyFixtureTests.swift */; };
 		DPA000000000000000000405 /* PadMappingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DPA000000000000000000404 /* PadMappingTests.swift */; };
 		DPA000000000000000000407 /* VoicePoolTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DPA000000000000000000406 /* VoicePoolTests.swift */; };
+		DPA000000000000000000501 /* AudioRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = DPA000000000000000000502 /* AudioRecorder.swift */; };
+		DPA000000000000000000503 /* SoundPack.swift in Sources */ = {isa = PBXBuildFile; fileRef = DPA000000000000000000504 /* SoundPack.swift */; };
+		DPA000000000000000000505 /* FeedPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = DPA000000000000000000506 /* FeedPost.swift */; };
+		DPA000000000000000000507 /* UserProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = DPA000000000000000000508 /* UserProfile.swift */; };
+		DPA000000000000000000509 /* AudioExportService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DPA00000000000000000050A /* AudioExportService.swift */; };
+		DPA00000000000000000050B /* AppTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = DPA00000000000000000050C /* AppTheme.swift */; };
+		DPA00000000000000000050D /* AppBottomNavBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = DPA00000000000000000050E /* AppBottomNavBar.swift */; };
+		DPA00000000000000000050F /* MainAppContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DPA000000000000000000510 /* MainAppContainer.swift */; };
+		DPA000000000000000000511 /* PadPlayerScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = DPA000000000000000000512 /* PadPlayerScreen.swift */; };
+		DPA000000000000000000513 /* SoundsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = DPA000000000000000000514 /* SoundsScreen.swift */; };
+		DPA000000000000000000515 /* FeedScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = DPA000000000000000000516 /* FeedScreen.swift */; };
+		DPA000000000000000000517 /* MyStudioScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = DPA000000000000000000518 /* MyStudioScreen.swift */; };
+		DPA000000000000000000519 /* AccountScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = DPA00000000000000000051A /* AccountScreen.swift */; };
+		DPA00000000000000000051B /* SettingsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = DPA00000000000000000051C /* SettingsScreen.swift */; };
+		DPA00000000000000000051D /* PaywallScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = DPA00000000000000000051E /* PaywallScreen.swift */; };
+		DPA00000000000000000051F /* RecentlyUsedScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = DPA000000000000000000520 /* RecentlyUsedScreen.swift */; };
+		DPA000000000000000000521 /* PadEditorScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = DPA000000000000000000522 /* PadEditorScreen.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -41,6 +58,23 @@
 		DPA000000000000000000402 /* EmptyFixtureTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "EmptyFixtureTests.swift"; path = "Tests/DrumPadsTests/EmptyFixtureTests.swift"; sourceTree = "<group>"; };
 		DPA000000000000000000404 /* PadMappingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "PadMappingTests.swift"; path = "Tests/DrumPadsTests/PadMappingTests.swift"; sourceTree = "<group>"; };
 		DPA000000000000000000406 /* VoicePoolTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "VoicePoolTests.swift"; path = "Tests/DrumPadsTests/VoicePoolTests.swift"; sourceTree = "<group>"; };
+		DPA000000000000000000502 /* AudioRecorder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "AudioRecorder.swift"; path = "Sources/DrumPadsApp/Audio/AudioRecorder.swift"; sourceTree = "<group>"; };
+		DPA000000000000000000504 /* SoundPack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "SoundPack.swift"; path = "Sources/DrumPadsApp/Models/SoundPack.swift"; sourceTree = "<group>"; };
+		DPA000000000000000000506 /* FeedPost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "FeedPost.swift"; path = "Sources/DrumPadsApp/Models/FeedPost.swift"; sourceTree = "<group>"; };
+		DPA000000000000000000508 /* UserProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "UserProfile.swift"; path = "Sources/DrumPadsApp/Models/UserProfile.swift"; sourceTree = "<group>"; };
+		DPA00000000000000000050A /* AudioExportService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "AudioExportService.swift"; path = "Sources/DrumPadsApp/Services/AudioExportService.swift"; sourceTree = "<group>"; };
+		DPA00000000000000000050C /* AppTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "AppTheme.swift"; path = "Sources/DrumPadsApp/Theme/AppTheme.swift"; sourceTree = "<group>"; };
+		DPA00000000000000000050E /* AppBottomNavBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "AppBottomNavBar.swift"; path = "Sources/DrumPadsApp/Views/Components/AppBottomNavBar.swift"; sourceTree = "<group>"; };
+		DPA000000000000000000510 /* MainAppContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "MainAppContainer.swift"; path = "Sources/DrumPadsApp/Views/Screens/MainAppContainer.swift"; sourceTree = "<group>"; };
+		DPA000000000000000000512 /* PadPlayerScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "PadPlayerScreen.swift"; path = "Sources/DrumPadsApp/Views/Screens/PadPlayerScreen.swift"; sourceTree = "<group>"; };
+		DPA000000000000000000514 /* SoundsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "SoundsScreen.swift"; path = "Sources/DrumPadsApp/Views/Screens/SoundsScreen.swift"; sourceTree = "<group>"; };
+		DPA000000000000000000516 /* FeedScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "FeedScreen.swift"; path = "Sources/DrumPadsApp/Views/Screens/FeedScreen.swift"; sourceTree = "<group>"; };
+		DPA000000000000000000518 /* MyStudioScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "MyStudioScreen.swift"; path = "Sources/DrumPadsApp/Views/Screens/MyStudioScreen.swift"; sourceTree = "<group>"; };
+		DPA00000000000000000051A /* AccountScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "AccountScreen.swift"; path = "Sources/DrumPadsApp/Views/Screens/AccountScreen.swift"; sourceTree = "<group>"; };
+		DPA00000000000000000051C /* SettingsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "SettingsScreen.swift"; path = "Sources/DrumPadsApp/Views/Screens/SettingsScreen.swift"; sourceTree = "<group>"; };
+		DPA00000000000000000051E /* PaywallScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "PaywallScreen.swift"; path = "Sources/DrumPadsApp/Views/Screens/PaywallScreen.swift"; sourceTree = "<group>"; };
+		DPA000000000000000000520 /* RecentlyUsedScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "RecentlyUsedScreen.swift"; path = "Sources/DrumPadsApp/Views/Screens/RecentlyUsedScreen.swift"; sourceTree = "<group>"; };
+		DPA000000000000000000522 /* PadEditorScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "PadEditorScreen.swift"; path = "Sources/DrumPadsApp/Views/Screens/PadEditorScreen.swift"; sourceTree = "<group>"; };
 		200100000000000000000001 /* DrumPadsApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DrumPadsApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		200100000000000000000002 /* DrumPadsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DrumPadsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -88,6 +122,23 @@
 				DPA0000000000000000003FB /* DrumPadsStore.swift */,
 				DPA0000000000000000003FD /* DrumPadsView.swift */,
 				DPA0000000000000000003FF /* SettingsView.swift */,
+				DPA000000000000000000502 /* AudioRecorder.swift */,
+				DPA000000000000000000504 /* SoundPack.swift */,
+				DPA000000000000000000506 /* FeedPost.swift */,
+				DPA000000000000000000508 /* UserProfile.swift */,
+				DPA00000000000000000050A /* AudioExportService.swift */,
+				DPA00000000000000000050C /* AppTheme.swift */,
+				DPA00000000000000000050E /* AppBottomNavBar.swift */,
+				DPA000000000000000000510 /* MainAppContainer.swift */,
+				DPA000000000000000000512 /* PadPlayerScreen.swift */,
+				DPA000000000000000000514 /* SoundsScreen.swift */,
+				DPA000000000000000000516 /* FeedScreen.swift */,
+				DPA000000000000000000518 /* MyStudioScreen.swift */,
+				DPA00000000000000000051A /* AccountScreen.swift */,
+				DPA00000000000000000051C /* SettingsScreen.swift */,
+				DPA00000000000000000051E /* PaywallScreen.swift */,
+				DPA000000000000000000520 /* RecentlyUsedScreen.swift */,
+				DPA000000000000000000522 /* PadEditorScreen.swift */,
 				200100000000000000000001 /* DrumPadsApp.app */,
 			);
 			name = Sources;
@@ -215,6 +266,23 @@
 				DPA0000000000000000003FC /* in Sources */,
 				DPA0000000000000000003FE /* in Sources */,
 				DPA000000000000000000400 /* in Sources */,
+				DPA000000000000000000501 /* in Sources */,
+				DPA000000000000000000503 /* in Sources */,
+				DPA000000000000000000505 /* in Sources */,
+				DPA000000000000000000507 /* in Sources */,
+				DPA000000000000000000509 /* in Sources */,
+				DPA00000000000000000050B /* in Sources */,
+				DPA00000000000000000050D /* in Sources */,
+				DPA00000000000000000050F /* in Sources */,
+				DPA000000000000000000511 /* in Sources */,
+				DPA000000000000000000513 /* in Sources */,
+				DPA000000000000000000515 /* in Sources */,
+				DPA000000000000000000517 /* in Sources */,
+				DPA000000000000000000519 /* in Sources */,
+				DPA00000000000000000051B /* in Sources */,
+				DPA00000000000000000051D /* in Sources */,
+				DPA00000000000000000051F /* in Sources */,
+				DPA000000000000000000521 /* in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

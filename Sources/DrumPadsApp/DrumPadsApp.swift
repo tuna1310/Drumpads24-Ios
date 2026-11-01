@@ -6,7 +6,7 @@ public struct DrumPadsApp: App {
 
     public var body: some Scene {
         WindowGroup {
-            DrumPadsView()
+            MainAppContainer()
                 .preferredColorScheme(.dark)
         }
     }
