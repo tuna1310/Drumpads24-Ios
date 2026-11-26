@@ -43,18 +43,9 @@ public struct AppBottomNavBar: View {
                 onTabSelected(.account)
             }
         }
-        .padding(.horizontal, 10)
+        .padding(.horizontal, 8)
         .padding(.vertical, 6)
-        .background(
-            RoundedRectangle(cornerRadius: 32)
-                .fill(AppTheme.navySurface.opacity(0.95))
-                .overlay(
-                    RoundedRectangle(cornerRadius: 32)
-                        .stroke(AppTheme.navyBorder, lineWidth: 1)
-                )
-        )
-        .padding(.horizontal, 16)
-        .padding(.bottom, 6)
+        .background(AppTheme.navySurface)
     }
 }
 
@@ -137,17 +128,8 @@ public struct MiniPlayerBar: View {
             }
             .buttonStyle(.plain)
         }
-        .padding(.horizontal, 14)
-        .padding(.vertical, 8)
-        .background(
-            RoundedRectangle(cornerRadius: 18)
-                .fill(AppTheme.navySurface.opacity(0.92))
-                .overlay(
-                    RoundedRectangle(cornerRadius: 18)
-                        .stroke(AppTheme.navyBorder.opacity(0.8), lineWidth: 1)
-                )
-        )
         .padding(.horizontal, 16)
-        .padding(.bottom, 6)
+        .padding(.vertical, 8)
+        .background(AppTheme.navyCard.opacity(0.75))
     }
 }
