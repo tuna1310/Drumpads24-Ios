@@ -8,73 +8,85 @@
 
 /* Begin PBXBuildFile section */
 		DPA0000000000000000003EA /* AudioEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = DPA0000000000000000003E9 /* AudioEngine.swift */; };
-		DPA0000000000000000003EC /* LockFreeQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = DPA0000000000000000003EB /* LockFreeQueue.swift */; };
-		DPA0000000000000000003EE /* VoicePool.swift in Sources */ = {isa = PBXBuildFile; fileRef = DPA0000000000000000003ED /* VoicePool.swift */; };
-		DPA0000000000000000003F0 /* DrumPadsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = DPA0000000000000000003EF /* DrumPadsApp.swift */; };
-		DPA0000000000000000003F2 /* Pad.swift in Sources */ = {isa = PBXBuildFile; fileRef = DPA0000000000000000003F1 /* Pad.swift */; };
-		DPA0000000000000000003F4 /* PadGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = DPA0000000000000000003F3 /* PadGroup.swift */; };
-		DPA0000000000000000003F6 /* PadRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = DPA0000000000000000003F5 /* PadRepository.swift */; };
-		DPA0000000000000000003F8 /* starter in Resources */ = {isa = PBXBuildFile; fileRef = DPA0000000000000000003F7 /* starter */; };
-		DPA0000000000000000003FA /* HapticService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DPA0000000000000000003F9 /* HapticService.swift */; };
-		DPA0000000000000000003FC /* DrumPadsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = DPA0000000000000000003FB /* DrumPadsStore.swift */; };
-		DPA0000000000000000003FE /* DrumPadsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DPA0000000000000000003FD /* DrumPadsView.swift */; };
-		DPA000000000000000000400 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DPA0000000000000000003FF /* SettingsView.swift */; };
-		DPA000000000000000000403 /* EmptyFixtureTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DPA000000000000000000402 /* EmptyFixtureTests.swift */; };
-		DPA000000000000000000405 /* PadMappingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DPA000000000000000000404 /* PadMappingTests.swift */; };
-		DPA000000000000000000407 /* VoicePoolTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DPA000000000000000000406 /* VoicePoolTests.swift */; };
-		DPA000000000000000000501 /* AudioRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = DPA000000000000000000502 /* AudioRecorder.swift */; };
-		DPA000000000000000000503 /* SoundPack.swift in Sources */ = {isa = PBXBuildFile; fileRef = DPA000000000000000000504 /* SoundPack.swift */; };
-		DPA000000000000000000505 /* FeedPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = DPA000000000000000000506 /* FeedPost.swift */; };
-		DPA000000000000000000507 /* UserProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = DPA000000000000000000508 /* UserProfile.swift */; };
-		DPA000000000000000000509 /* AudioExportService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DPA00000000000000000050A /* AudioExportService.swift */; };
-		DPA00000000000000000050B /* AppTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = DPA00000000000000000050C /* AppTheme.swift */; };
-		DPA00000000000000000050D /* AppBottomNavBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = DPA00000000000000000050E /* AppBottomNavBar.swift */; };
-		DPA00000000000000000050F /* MainAppContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DPA000000000000000000510 /* MainAppContainer.swift */; };
-		DPA000000000000000000511 /* PadPlayerScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = DPA000000000000000000512 /* PadPlayerScreen.swift */; };
-		DPA000000000000000000513 /* SoundsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = DPA000000000000000000514 /* SoundsScreen.swift */; };
-		DPA000000000000000000515 /* FeedScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = DPA000000000000000000516 /* FeedScreen.swift */; };
-		DPA000000000000000000517 /* MyStudioScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = DPA000000000000000000518 /* MyStudioScreen.swift */; };
-		DPA000000000000000000519 /* AccountScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = DPA00000000000000000051A /* AccountScreen.swift */; };
-		DPA00000000000000000051B /* SettingsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = DPA00000000000000000051C /* SettingsScreen.swift */; };
-		DPA00000000000000000051D /* PaywallScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = DPA00000000000000000051E /* PaywallScreen.swift */; };
-		DPA00000000000000000051F /* RecentlyUsedScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = DPA000000000000000000520 /* RecentlyUsedScreen.swift */; };
-		DPA000000000000000000521 /* PadEditorScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = DPA000000000000000000522 /* PadEditorScreen.swift */; };
+		DPA0000000000000000003EC /* AudioRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = DPA0000000000000000003EB /* AudioRecorder.swift */; };
+		DPA0000000000000000003EE /* GenreSampleSynthesizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DPA0000000000000000003ED /* GenreSampleSynthesizer.swift */; };
+		DPA0000000000000000003F0 /* LockFreeQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = DPA0000000000000000003EF /* LockFreeQueue.swift */; };
+		DPA0000000000000000003F2 /* VoicePool.swift in Sources */ = {isa = PBXBuildFile; fileRef = DPA0000000000000000003F1 /* VoicePool.swift */; };
+		DPA0000000000000000003F4 /* DrumPadsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = DPA0000000000000000003F3 /* DrumPadsApp.swift */; };
+		DPA0000000000000000003F6 /* ClipModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = DPA0000000000000000003F5 /* ClipModels.swift */; };
+		DPA0000000000000000003F8 /* FeedPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = DPA0000000000000000003F7 /* FeedPost.swift */; };
+		DPA0000000000000000003FA /* Pad.swift in Sources */ = {isa = PBXBuildFile; fileRef = DPA0000000000000000003F9 /* Pad.swift */; };
+		DPA0000000000000000003FC /* PadGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = DPA0000000000000000003FB /* PadGroup.swift */; };
+		DPA0000000000000000003FE /* PadRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = DPA0000000000000000003FD /* PadRepository.swift */; };
+		DPA000000000000000000400 /* SoundPack.swift in Sources */ = {isa = PBXBuildFile; fileRef = DPA0000000000000000003FF /* SoundPack.swift */; };
+		DPA000000000000000000402 /* UserProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = DPA000000000000000000401 /* UserProfile.swift */; };
+		DPA000000000000000000404 /* starter in Resources */ = {isa = PBXBuildFile; fileRef = DPA000000000000000000403 /* starter */; };
+		DPA000000000000000000406 /* AudioExportService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DPA000000000000000000405 /* AudioExportService.swift */; };
+		DPA000000000000000000408 /* HapticService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DPA000000000000000000407 /* HapticService.swift */; };
+		DPA00000000000000000040A /* StudioStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = DPA000000000000000000409 /* StudioStorage.swift */; };
+		DPA00000000000000000040C /* AppTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = DPA00000000000000000040B /* AppTheme.swift */; };
+		DPA00000000000000000040E /* DrumPadsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = DPA00000000000000000040D /* DrumPadsStore.swift */; };
+		DPA000000000000000000410 /* AppBottomNavBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = DPA00000000000000000040F /* AppBottomNavBar.swift */; };
+		DPA000000000000000000412 /* DrumPadsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DPA000000000000000000411 /* DrumPadsView.swift */; };
+		DPA000000000000000000414 /* AccountScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = DPA000000000000000000413 /* AccountScreen.swift */; };
+		DPA000000000000000000416 /* ClipEditorScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = DPA000000000000000000415 /* ClipEditorScreen.swift */; };
+		DPA000000000000000000418 /* FeedScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = DPA000000000000000000417 /* FeedScreen.swift */; };
+		DPA00000000000000000041A /* MainAppContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DPA000000000000000000419 /* MainAppContainer.swift */; };
+		DPA00000000000000000041C /* MyStudioScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = DPA00000000000000000041B /* MyStudioScreen.swift */; };
+		DPA00000000000000000041E /* PadEditorScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = DPA00000000000000000041D /* PadEditorScreen.swift */; };
+		DPA000000000000000000420 /* PadPlayerScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = DPA00000000000000000041F /* PadPlayerScreen.swift */; };
+		DPA000000000000000000422 /* PaywallScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = DPA000000000000000000421 /* PaywallScreen.swift */; };
+		DPA000000000000000000424 /* RecentlyUsedScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = DPA000000000000000000423 /* RecentlyUsedScreen.swift */; };
+		DPA000000000000000000426 /* RecordingsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = DPA000000000000000000425 /* RecordingsScreen.swift */; };
+		DPA000000000000000000428 /* SettingsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = DPA000000000000000000427 /* SettingsScreen.swift */; };
+		DPA00000000000000000042A /* SoundEditorScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = DPA000000000000000000429 /* SoundEditorScreen.swift */; };
+		DPA00000000000000000042C /* SoundsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = DPA00000000000000000042B /* SoundsScreen.swift */; };
+		DPA00000000000000000042E /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DPA00000000000000000042D /* SettingsView.swift */; };
+		DPA000000000000000000431 /* EmptyFixtureTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DPA000000000000000000430 /* EmptyFixtureTests.swift */; };
+		DPA000000000000000000433 /* PadMappingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DPA000000000000000000432 /* PadMappingTests.swift */; };
+		DPA000000000000000000435 /* VoicePoolTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DPA000000000000000000434 /* VoicePoolTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		DPA0000000000000000003E9 /* AudioEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "AudioEngine.swift"; path = "Sources/DrumPadsApp/Audio/AudioEngine.swift"; sourceTree = "<group>"; };
-		DPA0000000000000000003EB /* LockFreeQueue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "LockFreeQueue.swift"; path = "Sources/DrumPadsApp/Audio/LockFreeQueue.swift"; sourceTree = "<group>"; };
-		DPA0000000000000000003ED /* VoicePool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "VoicePool.swift"; path = "Sources/DrumPadsApp/Audio/VoicePool.swift"; sourceTree = "<group>"; };
-		DPA0000000000000000003EF /* DrumPadsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "DrumPadsApp.swift"; path = "Sources/DrumPadsApp/DrumPadsApp.swift"; sourceTree = "<group>"; };
-		DPA0000000000000000003F1 /* Pad.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Pad.swift"; path = "Sources/DrumPadsApp/Models/Pad.swift"; sourceTree = "<group>"; };
-		DPA0000000000000000003F3 /* PadGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "PadGroup.swift"; path = "Sources/DrumPadsApp/Models/PadGroup.swift"; sourceTree = "<group>"; };
-		DPA0000000000000000003F5 /* PadRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "PadRepository.swift"; path = "Sources/DrumPadsApp/Models/PadRepository.swift"; sourceTree = "<group>"; };
-		DPA0000000000000000003F7 /* starter */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "starter"; path = "Sources/DrumPadsApp/Resources/starter"; sourceTree = "<group>"; };
-		DPA0000000000000000003F9 /* HapticService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "HapticService.swift"; path = "Sources/DrumPadsApp/Services/HapticService.swift"; sourceTree = "<group>"; };
-		DPA0000000000000000003FB /* DrumPadsStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "DrumPadsStore.swift"; path = "Sources/DrumPadsApp/ViewModels/DrumPadsStore.swift"; sourceTree = "<group>"; };
-		DPA0000000000000000003FD /* DrumPadsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "DrumPadsView.swift"; path = "Sources/DrumPadsApp/Views/DrumPadsView.swift"; sourceTree = "<group>"; };
-		DPA0000000000000000003FF /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "SettingsView.swift"; path = "Sources/DrumPadsApp/Views/SettingsView.swift"; sourceTree = "<group>"; };
-		DPA000000000000000000401 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Info.plist"; path = "Info.plist"; sourceTree = "<group>"; };
-		DPA000000000000000000402 /* EmptyFixtureTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "EmptyFixtureTests.swift"; path = "Tests/DrumPadsTests/EmptyFixtureTests.swift"; sourceTree = "<group>"; };
-		DPA000000000000000000404 /* PadMappingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "PadMappingTests.swift"; path = "Tests/DrumPadsTests/PadMappingTests.swift"; sourceTree = "<group>"; };
-		DPA000000000000000000406 /* VoicePoolTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "VoicePoolTests.swift"; path = "Tests/DrumPadsTests/VoicePoolTests.swift"; sourceTree = "<group>"; };
-		DPA000000000000000000502 /* AudioRecorder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "AudioRecorder.swift"; path = "Sources/DrumPadsApp/Audio/AudioRecorder.swift"; sourceTree = "<group>"; };
-		DPA000000000000000000504 /* SoundPack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "SoundPack.swift"; path = "Sources/DrumPadsApp/Models/SoundPack.swift"; sourceTree = "<group>"; };
-		DPA000000000000000000506 /* FeedPost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "FeedPost.swift"; path = "Sources/DrumPadsApp/Models/FeedPost.swift"; sourceTree = "<group>"; };
-		DPA000000000000000000508 /* UserProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "UserProfile.swift"; path = "Sources/DrumPadsApp/Models/UserProfile.swift"; sourceTree = "<group>"; };
-		DPA00000000000000000050A /* AudioExportService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "AudioExportService.swift"; path = "Sources/DrumPadsApp/Services/AudioExportService.swift"; sourceTree = "<group>"; };
-		DPA00000000000000000050C /* AppTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "AppTheme.swift"; path = "Sources/DrumPadsApp/Theme/AppTheme.swift"; sourceTree = "<group>"; };
-		DPA00000000000000000050E /* AppBottomNavBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "AppBottomNavBar.swift"; path = "Sources/DrumPadsApp/Views/Components/AppBottomNavBar.swift"; sourceTree = "<group>"; };
-		DPA000000000000000000510 /* MainAppContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "MainAppContainer.swift"; path = "Sources/DrumPadsApp/Views/Screens/MainAppContainer.swift"; sourceTree = "<group>"; };
-		DPA000000000000000000512 /* PadPlayerScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "PadPlayerScreen.swift"; path = "Sources/DrumPadsApp/Views/Screens/PadPlayerScreen.swift"; sourceTree = "<group>"; };
-		DPA000000000000000000514 /* SoundsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "SoundsScreen.swift"; path = "Sources/DrumPadsApp/Views/Screens/SoundsScreen.swift"; sourceTree = "<group>"; };
-		DPA000000000000000000516 /* FeedScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "FeedScreen.swift"; path = "Sources/DrumPadsApp/Views/Screens/FeedScreen.swift"; sourceTree = "<group>"; };
-		DPA000000000000000000518 /* MyStudioScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "MyStudioScreen.swift"; path = "Sources/DrumPadsApp/Views/Screens/MyStudioScreen.swift"; sourceTree = "<group>"; };
-		DPA00000000000000000051A /* AccountScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "AccountScreen.swift"; path = "Sources/DrumPadsApp/Views/Screens/AccountScreen.swift"; sourceTree = "<group>"; };
-		DPA00000000000000000051C /* SettingsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "SettingsScreen.swift"; path = "Sources/DrumPadsApp/Views/Screens/SettingsScreen.swift"; sourceTree = "<group>"; };
-		DPA00000000000000000051E /* PaywallScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "PaywallScreen.swift"; path = "Sources/DrumPadsApp/Views/Screens/PaywallScreen.swift"; sourceTree = "<group>"; };
-		DPA000000000000000000520 /* RecentlyUsedScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "RecentlyUsedScreen.swift"; path = "Sources/DrumPadsApp/Views/Screens/RecentlyUsedScreen.swift"; sourceTree = "<group>"; };
-		DPA000000000000000000522 /* PadEditorScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "PadEditorScreen.swift"; path = "Sources/DrumPadsApp/Views/Screens/PadEditorScreen.swift"; sourceTree = "<group>"; };
+		DPA0000000000000000003EB /* AudioRecorder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "AudioRecorder.swift"; path = "Sources/DrumPadsApp/Audio/AudioRecorder.swift"; sourceTree = "<group>"; };
+		DPA0000000000000000003ED /* GenreSampleSynthesizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "GenreSampleSynthesizer.swift"; path = "Sources/DrumPadsApp/Audio/GenreSampleSynthesizer.swift"; sourceTree = "<group>"; };
+		DPA0000000000000000003EF /* LockFreeQueue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "LockFreeQueue.swift"; path = "Sources/DrumPadsApp/Audio/LockFreeQueue.swift"; sourceTree = "<group>"; };
+		DPA0000000000000000003F1 /* VoicePool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "VoicePool.swift"; path = "Sources/DrumPadsApp/Audio/VoicePool.swift"; sourceTree = "<group>"; };
+		DPA0000000000000000003F3 /* DrumPadsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "DrumPadsApp.swift"; path = "Sources/DrumPadsApp/DrumPadsApp.swift"; sourceTree = "<group>"; };
+		DPA0000000000000000003F5 /* ClipModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "ClipModels.swift"; path = "Sources/DrumPadsApp/Models/ClipModels.swift"; sourceTree = "<group>"; };
+		DPA0000000000000000003F7 /* FeedPost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "FeedPost.swift"; path = "Sources/DrumPadsApp/Models/FeedPost.swift"; sourceTree = "<group>"; };
+		DPA0000000000000000003F9 /* Pad.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Pad.swift"; path = "Sources/DrumPadsApp/Models/Pad.swift"; sourceTree = "<group>"; };
+		DPA0000000000000000003FB /* PadGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "PadGroup.swift"; path = "Sources/DrumPadsApp/Models/PadGroup.swift"; sourceTree = "<group>"; };
+		DPA0000000000000000003FD /* PadRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "PadRepository.swift"; path = "Sources/DrumPadsApp/Models/PadRepository.swift"; sourceTree = "<group>"; };
+		DPA0000000000000000003FF /* SoundPack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "SoundPack.swift"; path = "Sources/DrumPadsApp/Models/SoundPack.swift"; sourceTree = "<group>"; };
+		DPA000000000000000000401 /* UserProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "UserProfile.swift"; path = "Sources/DrumPadsApp/Models/UserProfile.swift"; sourceTree = "<group>"; };
+		DPA000000000000000000403 /* starter */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "starter"; path = "Sources/DrumPadsApp/Resources/starter"; sourceTree = "<group>"; };
+		DPA000000000000000000405 /* AudioExportService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "AudioExportService.swift"; path = "Sources/DrumPadsApp/Services/AudioExportService.swift"; sourceTree = "<group>"; };
+		DPA000000000000000000407 /* HapticService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "HapticService.swift"; path = "Sources/DrumPadsApp/Services/HapticService.swift"; sourceTree = "<group>"; };
+		DPA000000000000000000409 /* StudioStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "StudioStorage.swift"; path = "Sources/DrumPadsApp/Services/StudioStorage.swift"; sourceTree = "<group>"; };
+		DPA00000000000000000040B /* AppTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "AppTheme.swift"; path = "Sources/DrumPadsApp/Theme/AppTheme.swift"; sourceTree = "<group>"; };
+		DPA00000000000000000040D /* DrumPadsStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "DrumPadsStore.swift"; path = "Sources/DrumPadsApp/ViewModels/DrumPadsStore.swift"; sourceTree = "<group>"; };
+		DPA00000000000000000040F /* AppBottomNavBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "AppBottomNavBar.swift"; path = "Sources/DrumPadsApp/Views/Components/AppBottomNavBar.swift"; sourceTree = "<group>"; };
+		DPA000000000000000000411 /* DrumPadsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "DrumPadsView.swift"; path = "Sources/DrumPadsApp/Views/DrumPadsView.swift"; sourceTree = "<group>"; };
+		DPA000000000000000000413 /* AccountScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "AccountScreen.swift"; path = "Sources/DrumPadsApp/Views/Screens/AccountScreen.swift"; sourceTree = "<group>"; };
+		DPA000000000000000000415 /* ClipEditorScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "ClipEditorScreen.swift"; path = "Sources/DrumPadsApp/Views/Screens/ClipEditorScreen.swift"; sourceTree = "<group>"; };
+		DPA000000000000000000417 /* FeedScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "FeedScreen.swift"; path = "Sources/DrumPadsApp/Views/Screens/FeedScreen.swift"; sourceTree = "<group>"; };
+		DPA000000000000000000419 /* MainAppContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "MainAppContainer.swift"; path = "Sources/DrumPadsApp/Views/Screens/MainAppContainer.swift"; sourceTree = "<group>"; };
+		DPA00000000000000000041B /* MyStudioScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "MyStudioScreen.swift"; path = "Sources/DrumPadsApp/Views/Screens/MyStudioScreen.swift"; sourceTree = "<group>"; };
+		DPA00000000000000000041D /* PadEditorScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "PadEditorScreen.swift"; path = "Sources/DrumPadsApp/Views/Screens/PadEditorScreen.swift"; sourceTree = "<group>"; };
+		DPA00000000000000000041F /* PadPlayerScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "PadPlayerScreen.swift"; path = "Sources/DrumPadsApp/Views/Screens/PadPlayerScreen.swift"; sourceTree = "<group>"; };
+		DPA000000000000000000421 /* PaywallScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "PaywallScreen.swift"; path = "Sources/DrumPadsApp/Views/Screens/PaywallScreen.swift"; sourceTree = "<group>"; };
+		DPA000000000000000000423 /* RecentlyUsedScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "RecentlyUsedScreen.swift"; path = "Sources/DrumPadsApp/Views/Screens/RecentlyUsedScreen.swift"; sourceTree = "<group>"; };
+		DPA000000000000000000425 /* RecordingsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "RecordingsScreen.swift"; path = "Sources/DrumPadsApp/Views/Screens/RecordingsScreen.swift"; sourceTree = "<group>"; };
+		DPA000000000000000000427 /* SettingsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "SettingsScreen.swift"; path = "Sources/DrumPadsApp/Views/Screens/SettingsScreen.swift"; sourceTree = "<group>"; };
+		DPA000000000000000000429 /* SoundEditorScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "SoundEditorScreen.swift"; path = "Sources/DrumPadsApp/Views/Screens/SoundEditorScreen.swift"; sourceTree = "<group>"; };
+		DPA00000000000000000042B /* SoundsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "SoundsScreen.swift"; path = "Sources/DrumPadsApp/Views/Screens/SoundsScreen.swift"; sourceTree = "<group>"; };
+		DPA00000000000000000042D /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "SettingsView.swift"; path = "Sources/DrumPadsApp/Views/SettingsView.swift"; sourceTree = "<group>"; };
+		DPA00000000000000000042F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Info.plist"; path = "Info.plist"; sourceTree = "<group>"; };
+		DPA000000000000000000430 /* EmptyFixtureTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "EmptyFixtureTests.swift"; path = "Tests/DrumPadsTests/EmptyFixtureTests.swift"; sourceTree = "<group>"; };
+		DPA000000000000000000432 /* PadMappingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "PadMappingTests.swift"; path = "Tests/DrumPadsTests/PadMappingTests.swift"; sourceTree = "<group>"; };
+		DPA000000000000000000434 /* VoicePoolTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "VoicePoolTests.swift"; path = "Tests/DrumPadsTests/VoicePoolTests.swift"; sourceTree = "<group>"; };
 		200100000000000000000001 /* DrumPadsApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DrumPadsApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		200100000000000000000002 /* DrumPadsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DrumPadsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -102,7 +114,7 @@
 			children = (
 				0002 /* Sources */,
 				0003 /* Tests */,
-				DPA000000000000000000401 /* Info.plist */,
+				DPA00000000000000000042F /* Info.plist */,
 				0004 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -111,34 +123,40 @@
 			isa = PBXGroup;
 			children = (
 				DPA0000000000000000003E9 /* AudioEngine.swift */,
-				DPA0000000000000000003EB /* LockFreeQueue.swift */,
-				DPA0000000000000000003ED /* VoicePool.swift */,
-				DPA0000000000000000003EF /* DrumPadsApp.swift */,
-				DPA0000000000000000003F1 /* Pad.swift */,
-				DPA0000000000000000003F3 /* PadGroup.swift */,
-				DPA0000000000000000003F5 /* PadRepository.swift */,
-				DPA0000000000000000003F7 /* starter */,
-				DPA0000000000000000003F9 /* HapticService.swift */,
-				DPA0000000000000000003FB /* DrumPadsStore.swift */,
-				DPA0000000000000000003FD /* DrumPadsView.swift */,
-				DPA0000000000000000003FF /* SettingsView.swift */,
-				DPA000000000000000000502 /* AudioRecorder.swift */,
-				DPA000000000000000000504 /* SoundPack.swift */,
-				DPA000000000000000000506 /* FeedPost.swift */,
-				DPA000000000000000000508 /* UserProfile.swift */,
-				DPA00000000000000000050A /* AudioExportService.swift */,
-				DPA00000000000000000050C /* AppTheme.swift */,
-				DPA00000000000000000050E /* AppBottomNavBar.swift */,
-				DPA000000000000000000510 /* MainAppContainer.swift */,
-				DPA000000000000000000512 /* PadPlayerScreen.swift */,
-				DPA000000000000000000514 /* SoundsScreen.swift */,
-				DPA000000000000000000516 /* FeedScreen.swift */,
-				DPA000000000000000000518 /* MyStudioScreen.swift */,
-				DPA00000000000000000051A /* AccountScreen.swift */,
-				DPA00000000000000000051C /* SettingsScreen.swift */,
-				DPA00000000000000000051E /* PaywallScreen.swift */,
-				DPA000000000000000000520 /* RecentlyUsedScreen.swift */,
-				DPA000000000000000000522 /* PadEditorScreen.swift */,
+				DPA0000000000000000003EB /* AudioRecorder.swift */,
+				DPA0000000000000000003ED /* GenreSampleSynthesizer.swift */,
+				DPA0000000000000000003EF /* LockFreeQueue.swift */,
+				DPA0000000000000000003F1 /* VoicePool.swift */,
+				DPA0000000000000000003F3 /* DrumPadsApp.swift */,
+				DPA0000000000000000003F5 /* ClipModels.swift */,
+				DPA0000000000000000003F7 /* FeedPost.swift */,
+				DPA0000000000000000003F9 /* Pad.swift */,
+				DPA0000000000000000003FB /* PadGroup.swift */,
+				DPA0000000000000000003FD /* PadRepository.swift */,
+				DPA0000000000000000003FF /* SoundPack.swift */,
+				DPA000000000000000000401 /* UserProfile.swift */,
+				DPA000000000000000000403 /* starter */,
+				DPA000000000000000000405 /* AudioExportService.swift */,
+				DPA000000000000000000407 /* HapticService.swift */,
+				DPA000000000000000000409 /* StudioStorage.swift */,
+				DPA00000000000000000040B /* AppTheme.swift */,
+				DPA00000000000000000040D /* DrumPadsStore.swift */,
+				DPA00000000000000000040F /* AppBottomNavBar.swift */,
+				DPA000000000000000000411 /* DrumPadsView.swift */,
+				DPA000000000000000000413 /* AccountScreen.swift */,
+				DPA000000000000000000415 /* ClipEditorScreen.swift */,
+				DPA000000000000000000417 /* FeedScreen.swift */,
+				DPA000000000000000000419 /* MainAppContainer.swift */,
+				DPA00000000000000000041B /* MyStudioScreen.swift */,
+				DPA00000000000000000041D /* PadEditorScreen.swift */,
+				DPA00000000000000000041F /* PadPlayerScreen.swift */,
+				DPA000000000000000000421 /* PaywallScreen.swift */,
+				DPA000000000000000000423 /* RecentlyUsedScreen.swift */,
+				DPA000000000000000000425 /* RecordingsScreen.swift */,
+				DPA000000000000000000427 /* SettingsScreen.swift */,
+				DPA000000000000000000429 /* SoundEditorScreen.swift */,
+				DPA00000000000000000042B /* SoundsScreen.swift */,
+				DPA00000000000000000042D /* SettingsView.swift */,
 				200100000000000000000001 /* DrumPadsApp.app */,
 			);
 			name = Sources;
@@ -147,9 +165,9 @@
 		0003 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				DPA000000000000000000402 /* EmptyFixtureTests.swift */,
-				DPA000000000000000000404 /* PadMappingTests.swift */,
-				DPA000000000000000000406 /* VoicePoolTests.swift */,
+				DPA000000000000000000430 /* EmptyFixtureTests.swift */,
+				DPA000000000000000000432 /* PadMappingTests.swift */,
+				DPA000000000000000000434 /* VoicePoolTests.swift */,
 				200100000000000000000002 /* DrumPadsTests.xctest */,
 			);
 			name = Tests;
@@ -244,7 +262,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DPA0000000000000000003F8 /* starter in Resources */,
+				DPA000000000000000000404 /* starter in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -262,27 +280,33 @@
 				DPA0000000000000000003F2 /* in Sources */,
 				DPA0000000000000000003F4 /* in Sources */,
 				DPA0000000000000000003F6 /* in Sources */,
+				DPA0000000000000000003F8 /* in Sources */,
 				DPA0000000000000000003FA /* in Sources */,
 				DPA0000000000000000003FC /* in Sources */,
 				DPA0000000000000000003FE /* in Sources */,
 				DPA000000000000000000400 /* in Sources */,
-				DPA000000000000000000501 /* in Sources */,
-				DPA000000000000000000503 /* in Sources */,
-				DPA000000000000000000505 /* in Sources */,
-				DPA000000000000000000507 /* in Sources */,
-				DPA000000000000000000509 /* in Sources */,
-				DPA00000000000000000050B /* in Sources */,
-				DPA00000000000000000050D /* in Sources */,
-				DPA00000000000000000050F /* in Sources */,
-				DPA000000000000000000511 /* in Sources */,
-				DPA000000000000000000513 /* in Sources */,
-				DPA000000000000000000515 /* in Sources */,
-				DPA000000000000000000517 /* in Sources */,
-				DPA000000000000000000519 /* in Sources */,
-				DPA00000000000000000051B /* in Sources */,
-				DPA00000000000000000051D /* in Sources */,
-				DPA00000000000000000051F /* in Sources */,
-				DPA000000000000000000521 /* in Sources */,
+				DPA000000000000000000402 /* in Sources */,
+				DPA000000000000000000406 /* in Sources */,
+				DPA000000000000000000408 /* in Sources */,
+				DPA00000000000000000040A /* in Sources */,
+				DPA00000000000000000040C /* in Sources */,
+				DPA00000000000000000040E /* in Sources */,
+				DPA000000000000000000410 /* in Sources */,
+				DPA000000000000000000412 /* in Sources */,
+				DPA000000000000000000414 /* in Sources */,
+				DPA000000000000000000416 /* in Sources */,
+				DPA000000000000000000418 /* in Sources */,
+				DPA00000000000000000041A /* in Sources */,
+				DPA00000000000000000041C /* in Sources */,
+				DPA00000000000000000041E /* in Sources */,
+				DPA000000000000000000420 /* in Sources */,
+				DPA000000000000000000422 /* in Sources */,
+				DPA000000000000000000424 /* in Sources */,
+				DPA000000000000000000426 /* in Sources */,
+				DPA000000000000000000428 /* in Sources */,
+				DPA00000000000000000042A /* in Sources */,
+				DPA00000000000000000042C /* in Sources */,
+				DPA00000000000000000042E /* in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -290,9 +314,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DPA000000000000000000403 /* in Sources */,
-				DPA000000000000000000405 /* in Sources */,
-				DPA000000000000000000407 /* in Sources */,
+				DPA000000000000000000431 /* in Sources */,
+				DPA000000000000000000433 /* in Sources */,
+				DPA000000000000000000435 /* in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

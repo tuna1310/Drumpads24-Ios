@@ -3,438 +3,445 @@ import UniformTypeIdentifiers
 
 public struct PadEditorScreen: View {
     public var store: DrumPadsStore
-    @State private var selectedIndex: Int
-    @State private var padName: String = ""
-    @State private var volume: Float = 1.0
-    @State private var pitch: Float = 0.0
-    @State private var pan: Float = 0.0
-    @State private var isShowingFileImporter: Bool = false
-    @State private var isShowingSwapPicker: Bool = false
-    @State private var targetSwapIndex: Int = 0
+    @State private var isDuplicateMode: Bool = false
+    @State private var showAudioPicker: Bool = false
 
     public init(store: DrumPadsStore) {
         self.store = store
-        _selectedIndex = State(initialValue: store.selectedPadForEditing)
     }
 
+    private let colorSwatches = [
+        "#E53935", "#FF7A00", "#FFD233", "#38E54D",
+        "#00E5FF", "#00B0FF", "#8E24AA", "#E040FB",
+        "#FF2A85", "#00897B"
+    ]
+
     public var body: some View {
+        let currentPad = store.selectedPadForEdit ?? store.pads[0]
+
         ScrollView(.vertical, showsIndicators: false) {
-            VStack(alignment: .leading, spacing: 20) {
-                // Header
+            VStack(spacing: 14) {
+                // Header: Back | EDIT PADS | Done
                 HStack {
-                    Button(action: { store.navigateTo(.padPlayer) }) {
+                    Button(action: {
+                        store.swapSourcePadIndex = nil
+                        isDuplicateMode = false
+                        store.navigateTo(.padPlayer)
+                    }) {
                         Image(systemName: "arrow.left")
                             .font(.system(size: 18, weight: .bold))
-                            .foregroundColor(AppTheme.textPrimary)
+                            .foregroundColor(.white)
+                            .frame(width: 36, height: 36)
+                            .background(Circle().fill(AppTheme.navyCard))
                     }
 
-                    Text("Pad Editor (Pad #\(selectedIndex + 1))")
-                        .font(.system(size: 18, weight: .bold))
-                        .foregroundColor(AppTheme.textPrimary)
+                    Spacer()
+
+                    VStack(spacing: 1) {
+                        Text("EDIT PADS")
+                            .font(.system(size: 16, weight: .black))
+                            .foregroundColor(AppTheme.accentYellow)
+                        Text(store.activePackName)
+                            .font(.system(size: 11, weight: .semibold))
+                            .foregroundColor(AppTheme.textSecondary)
+                    }
 
                     Spacer()
 
                     Button(action: {
-                        savePadChanges()
+                        store.swapSourcePadIndex = nil
+                        isDuplicateMode = false
                         store.navigateTo(.padPlayer)
                     }) {
-                        Text("Save")
-                            .font(.system(size: 14, weight: .bold))
+                        Text("DONE")
+                            .font(.system(size: 12, weight: .black))
+                            .foregroundColor(.black)
+                            .padding(.horizontal, 12)
+                            .padding(.vertical, 7)
+                            .background(Capsule().fill(AppTheme.accentYellow))
+                    }
+                }
+                .padding(.horizontal, 16)
+                .padding(.top, 10)
+
+                // Swap / Duplicate Mode Banner
+                if store.swapSourcePadIndex != nil || isDuplicateMode {
+                    HStack {
+                        Text(isDuplicateMode
+                             ? "Tap any target pad below to DUPLICATE Pad \(currentPad.index + 1) into it"
+                             : "Tap any target pad below to SWAP positions with Pad \(currentPad.index + 1)")
+                            .font(.system(size: 11, weight: .bold))
                             .foregroundColor(AppTheme.accentCyan)
-                    }
-                }
-                .padding(.horizontal, 16)
-                .padding(.top, 12)
-
-                // 1. Interactive Pad Picker Carousel (0..23)
-                ScrollView(.horizontal, showsIndicators: false) {
-                    HStack(spacing: 8) {
-                        ForEach(0..<store.pads.count, id: \.self) { idx in
-                            let isSel = selectedIndex == idx
-                            Button(action: {
-                                selectedIndex = idx
-                                loadPadData(at: idx)
-                            }) {
-                                Text("\(idx + 1)")
-                                    .font(.system(size: 12, weight: .bold))
-                                    .foregroundColor(isSel ? .black : .white)
-                                    .frame(width: 36, height: 36)
-                                    .background(
-                                        RoundedRectangle(cornerRadius: 10)
-                                            .fill(isSel ? Color.white : Color(hex: store.pads[idx].colorHex))
-                                    )
-                            }
-                            .buttonStyle(.plain)
-                        }
-                    }
-                    .padding(.horizontal, 16)
-                }
-
-                // 2. Waveform Visualizer & Audition
-                VStack(spacing: 8) {
-                    ZStack {
-                        RoundedRectangle(cornerRadius: 16)
-                            .fill(Color(hex: "#16152B"))
-                            .overlay(RoundedRectangle(cornerRadius: 16).stroke(AppTheme.navyBorder, lineWidth: 1))
-                            .frame(height: 110)
-
-                        // Waveform Bars
-                        HStack(spacing: 3) {
-                            ForEach(0..<40, id: \.self) { bar in
-                                RoundedRectangle(cornerRadius: 1.5)
-                                    .fill(AppTheme.accentCyan.opacity(0.8))
-                                    .frame(width: 4, height: CGFloat(15 + ((bar * 17) % 75)))
-                            }
-                        }
-
-                        // Play/Test Button Overlay
-                        Button(action: {
-                            store.onPadDown(selectedIndex)
-                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.15) {
-                                store.onPadUp(selectedIndex)
-                            }
-                        }) {
-                            Circle()
-                                .fill(Color.black.opacity(0.6))
-                                .frame(width: 44, height: 44)
-                                .overlay(
-                                    Image(systemName: "play.fill")
-                                        .foregroundColor(.white)
-                                )
-                        }
-                    }
-
-                    HStack {
-                        Text("Sample: \(padName)")
-                            .font(.system(size: 12, weight: .semibold))
-                            .foregroundColor(AppTheme.textSecondary)
                         Spacer()
-                        Text("16-bit 44.1kHz")
-                            .font(.system(size: 10))
-                            .foregroundColor(AppTheme.textMuted)
-                    }
-                    .padding(.horizontal, 8)
-                }
-                .padding(.horizontal, 16)
-
-                // 3. Import Audio Button
-                Button(action: { isShowingFileImporter = true }) {
-                    HStack {
-                        Image(systemName: "square.and.arrow.down.fill")
-                            .foregroundColor(AppTheme.accentYellow)
-                        Text("Import Audio Sample (Files / iCloud)")
-                            .font(.system(size: 14, weight: .semibold))
-                            .foregroundColor(.white)
-                        Spacer()
-                        Image(systemName: "chevron.right")
-                            .foregroundColor(AppTheme.textSecondary)
-                    }
-                    .padding(14)
-                    .background(
-                        RoundedRectangle(cornerRadius: 14)
-                            .fill(AppTheme.navyCard)
-                            .overlay(RoundedRectangle(cornerRadius: 14).stroke(AppTheme.navyBorder, lineWidth: 1))
-                    )
-                    .padding(.horizontal, 16)
-                }
-                .buttonStyle(.plain)
-
-                // 4. Sample Properties & Sliders
-                VStack(spacing: 16) {
-                    VStack(alignment: .leading, spacing: 6) {
-                        Text("Pad Name")
-                            .font(.system(size: 12))
-                            .foregroundColor(AppTheme.textSecondary)
-                        TextField("Name", text: $padName)
-                            .padding(12)
-                            .background(
-                                RoundedRectangle(cornerRadius: 10)
-                                    .fill(AppTheme.navyCardElevated)
-                                    .overlay(RoundedRectangle(cornerRadius: 10).stroke(AppTheme.navyBorder, lineWidth: 1))
-                            )
-                            .foregroundColor(.white)
-                    }
-
-                    // Volume
-                    VStack(alignment: .leading, spacing: 6) {
-                        HStack {
-                            Text("Volume")
-                                .font(.system(size: 12))
-                                .foregroundColor(AppTheme.textSecondary)
-                            Spacer()
-                            Text("\(Int(volume * 100))%")
-                                .font(.system(size: 12, weight: .bold))
-                                .foregroundColor(AppTheme.accentCyan)
+                        Button("Cancel") {
+                            store.swapSourcePadIndex = nil
+                            isDuplicateMode = false
                         }
-                        Slider(value: $volume, in: 0...1.5)
-                            .tint(AppTheme.accentCyan)
-                    }
-
-                    // Pitch
-                    VStack(alignment: .leading, spacing: 6) {
-                        HStack {
-                            Text("Pitch Transpose")
-                                .font(.system(size: 12))
-                                .foregroundColor(AppTheme.textSecondary)
-                            Spacer()
-                            Text(String(format: "%+.1f st", pitch))
-                                .font(.system(size: 12, weight: .bold))
-                                .foregroundColor(AppTheme.accentYellow)
-                        }
-                        Slider(value: $pitch, in: -12...12, step: 1)
-                            .tint(AppTheme.accentYellow)
-                    }
-
-                    // Pan
-                    VStack(alignment: .leading, spacing: 6) {
-                        HStack {
-                            Text("Stereo Pan")
-                                .font(.system(size: 12))
-                                .foregroundColor(AppTheme.textSecondary)
-                            Spacer()
-                            Text(pan < -0.1 ? "L \(Int(abs(pan) * 100))" : (pan > 0.1 ? "R \(Int(pan * 100))" : "Center"))
-                                .font(.system(size: 12, weight: .bold))
-                                .foregroundColor(.white)
-                        }
-                        Slider(value: $pan, in: -1...1)
-                            .tint(Color(hex: "#8B5CF6"))
-                    }
-                }
-                .padding(16)
-                .background(
-                    RoundedRectangle(cornerRadius: 18)
-                        .fill(AppTheme.navyCard)
-                        .overlay(RoundedRectangle(cornerRadius: 18).stroke(AppTheme.navyBorder, lineWidth: 1))
-                )
-                .padding(.horizontal, 16)
-
-                // 5. Swap Pad & Duplicate Pad Actions
-                HStack(spacing: 12) {
-                    Button(action: { isShowingSwapPicker = true }) {
-                        HStack {
-                            Image(systemName: "arrow.left.arrow.right")
-                            Text("Swap Pad")
-                                .font(.system(size: 13, weight: .bold))
-                        }
+                        .font(.system(size: 11, weight: .bold))
                         .foregroundColor(.white)
-                        .frame(maxWidth: .infinity)
-                        .padding(.vertical, 12)
-                        .background(RoundedRectangle(cornerRadius: 14).fill(Color(hex: "#382A72")))
+                    }
+                    .padding(.horizontal, 14)
+                    .padding(.vertical, 8)
+                    .background(AppTheme.accentPurple.opacity(0.4))
+                }
+
+                // Side-by-side Scene A (1..12) and Scene B (13..24) Mini Pad Grids matching Play Store Reference
+                HStack(spacing: 12) {
+                    miniSceneGrid(title: "SCENE A", range: 0..<12, currentPad: currentPad)
+                    miniSceneGrid(title: "SCENE B", range: 12..<24, currentPad: currentPad)
+                }
+                .padding(.horizontal, 16)
+
+                // Action Row: Sound Waveform Editor | Swap | Duplicate | Import
+                HStack(spacing: 8) {
+                    Button(action: {
+                        store.refreshWaveformPeaks(for: currentPad)
+                        store.navigateTo(.soundEditor)
+                    }) {
+                        Label("WAVE & MIC", systemImage: "waveform")
+                            .font(.system(size: 11, weight: .black))
+                            .foregroundColor(.black)
+                            .frame(maxWidth: .infinity)
+                            .padding(.vertical, 10)
+                            .background(Capsule().fill(AppTheme.accentCyan))
                     }
 
                     Button(action: {
-                        duplicatePad()
+                        isDuplicateMode = false
+                        store.swapSourcePadIndex = (store.swapSourcePadIndex == currentPad.index) ? nil : currentPad.index
                     }) {
-                        HStack {
-                            Image(systemName: "plus.square.on.square")
-                            Text("Duplicate")
-                                .font(.system(size: 13, weight: .bold))
-                        }
-                        .foregroundColor(.white)
-                        .frame(maxWidth: .infinity)
-                        .padding(.vertical, 12)
-                        .background(RoundedRectangle(cornerRadius: 14).fill(Color(hex: "#281C48")))
+                        Label("SWAP", systemImage: "arrow.left.arrow.right")
+                            .font(.system(size: 11, weight: .black))
+                            .foregroundColor(store.swapSourcePadIndex != nil ? .black : .white)
+                            .padding(.horizontal, 12)
+                            .padding(.vertical, 10)
+                            .background(Capsule().fill(store.swapSourcePadIndex != nil ? AppTheme.accentYellow : AppTheme.navyCardElevated))
+                    }
+
+                    Button(action: {
+                        store.swapSourcePadIndex = nil
+                        isDuplicateMode.toggle()
+                    }) {
+                        Label("COPY", systemImage: "doc.on.doc")
+                            .font(.system(size: 11, weight: .black))
+                            .foregroundColor(isDuplicateMode ? .black : .white)
+                            .padding(.horizontal, 12)
+                            .padding(.vertical, 10)
+                            .background(Capsule().fill(isDuplicateMode ? AppTheme.accentPink : AppTheme.navyCardElevated))
+                    }
+
+                    Button(action: { showAudioPicker = true }) {
+                        Image(systemName: "folder.badge.plus")
+                            .font(.system(size: 13, weight: .bold))
+                            .foregroundColor(.white)
+                            .padding(10)
+                            .background(Circle().fill(AppTheme.accentPurple))
                     }
                 }
                 .padding(.horizontal, 16)
+
+                // Selected Pad Inspector Card
+                VStack(alignment: .leading, spacing: 12) {
+                    HStack {
+                        Text("PAD \(currentPad.index + 1) SETTINGS")
+                            .font(.system(size: 11, weight: .black))
+                            .foregroundColor(AppTheme.accentYellow)
+                        Spacer()
+                        Button(action: { store.triggerPad(index: currentPad.index) }) {
+                            Label("Test Sound", systemImage: "speaker.wave.2.fill")
+                                .font(.system(size: 11, weight: .bold))
+                                .foregroundColor(AppTheme.accentCyan)
+                        }
+                    }
+
+                    // Name field
+                    TextField("Pad Label", text: Binding(
+                        get: { currentPad.name },
+                        set: { val in
+                            var updated = currentPad
+                            updated.name = String(val.prefix(16))
+                            store.updatePad(updated)
+                        }
+                    ))
+                    .font(.system(size: 14, weight: .bold))
+                    .foregroundColor(.white)
+                    .padding(10)
+                    .background(RoundedRectangle(cornerRadius: 10).fill(AppTheme.navySurface))
+
+                    // Play Mode Selector (ONE SHOT / LOOP / HOLD)
+                    VStack(alignment: .leading, spacing: 6) {
+                        Text("PLAY MODE")
+                            .font(.system(size: 10, weight: .bold))
+                            .foregroundColor(AppTheme.textSecondary)
+                        HStack(spacing: 8) {
+                            ForEach(PadPlayMode.allCases, id: \.self) { mode in
+                                let selected = currentPad.playMode == mode
+                                Button(action: {
+                                    var updated = currentPad
+                                    updated.playMode = mode
+                                    store.updatePad(updated)
+                                }) {
+                                    Text(mode.rawValue)
+                                        .font(.system(size: 11, weight: .black))
+                                        .foregroundColor(selected ? .black : .white)
+                                        .frame(maxWidth: .infinity)
+                                        .padding(.vertical, 8)
+                                        .background(Capsule().fill(selected ? AppTheme.accentYellow : AppTheme.navySurface))
+                                }
+                                .buttonStyle(.plain)
+                            }
+                        }
+                    }
+
+                    // Choke Group Selector (None / Group 1 / Group 2)
+                    VStack(alignment: .leading, spacing: 6) {
+                        Text("GROUP CHOKE (MUTE EXCLUSIVE)")
+                            .font(.system(size: 10, weight: .bold))
+                            .foregroundColor(AppTheme.textSecondary)
+                        HStack(spacing: 8) {
+                            ForEach([0, 1, 2], id: \.self) { grp in
+                                let selected = currentPad.chokeGroup == grp
+                                Button(action: {
+                                    var updated = currentPad
+                                    updated.chokeGroup = grp
+                                    store.updatePad(updated)
+                                }) {
+                                    Text(grp == 0 ? "NONE" : "GROUP \(grp)")
+                                        .font(.system(size: 11, weight: .black))
+                                        .foregroundColor(selected ? .black : .white)
+                                        .frame(maxWidth: .infinity)
+                                        .padding(.vertical, 8)
+                                        .background(Capsule().fill(selected ? AppTheme.accentCyan : AppTheme.navySurface))
+                                }
+                                .buttonStyle(.plain)
+                            }
+                        }
+                    }
+
+                    // Color Swatches
+                    VStack(alignment: .leading, spacing: 6) {
+                        Text("PAD COLOR")
+                            .font(.system(size: 10, weight: .bold))
+                            .foregroundColor(AppTheme.textSecondary)
+                        ScrollView(.horizontal, showsIndicators: false) {
+                            HStack(spacing: 8) {
+                                ForEach(colorSwatches, id: \.self) { hex in
+                                    let isSel = currentPad.colorHex.caseInsensitiveCompare(hex) == .orderedSame
+                                    Button(action: {
+                                        var updated = currentPad
+                                        updated.colorHex = hex
+                                        store.updatePad(updated)
+                                    }) {
+                                        Circle()
+                                            .fill(Color(hex: hex))
+                                            .frame(width: 28, height: 28)
+                                            .overlay(
+                                                Circle()
+                                                    .stroke(.white, lineWidth: isSel ? 2.5 : 0)
+                                            )
+                                    }
+                                    .buttonStyle(.plain)
+                                }
+                            }
+                        }
+                    }
+
+                    // Pitch & Volume Quick Sliders
+                    VStack(alignment: .leading, spacing: 4) {
+                        HStack {
+                            Text("Pitch Shift")
+                                .font(.system(size: 12, weight: .semibold))
+                                .foregroundColor(.white)
+                            Spacer()
+                            Text("\(currentPad.pitch > 0 ? "+" : "")\(Int(currentPad.pitch)) st")
+                                .font(.system(size: 12, weight: .bold, design: .monospaced))
+                                .foregroundColor(AppTheme.accentCyan)
+                        }
+                        Slider(value: Binding(
+                            get: { Double(currentPad.pitch) },
+                            set: { v in var u = currentPad; u.pitch = Float(v); store.updatePad(u) }
+                        ), in: -12...12)
+                        .tint(AppTheme.accentCyan)
+
+                        HStack {
+                            Text("Pad Volume")
+                                .font(.system(size: 12, weight: .semibold))
+                                .foregroundColor(.white)
+                            Spacer()
+                            Text("\(Int(currentPad.volume * 100))%")
+                                .font(.system(size: 12, weight: .bold, design: .monospaced))
+                                .foregroundColor(AppTheme.accentYellow)
+                        }
+                        Slider(value: Binding(
+                            get: { Double(currentPad.volume) },
+                            set: { v in var u = currentPad; u.volume = Float(v); store.updatePad(u) }
+                        ), in: 0...1.5)
+                        .tint(AppTheme.accentYellow)
+                    }
+                }
+                .padding(14)
+                .background(RoundedRectangle(cornerRadius: 18).fill(AppTheme.navyCard))
+                .padding(.horizontal, 16)
             }
-            .padding(.bottom, 40)
+            .padding(.bottom, 30)
         }
         .background(AppTheme.navyBackground.ignoresSafeArea())
-        .onAppear {
-            loadPadData(at: selectedIndex)
-        }
         .fileImporter(
-            isPresented: $isShowingFileImporter,
+            isPresented: $showAudioPicker,
             allowedContentTypes: [.audio],
             allowsMultipleSelection: false
         ) { result in
-            switch result {
-            case .success(let urls):
-                if let url = urls.first {
-                    _ = url.startAccessingSecurityScopedResource()
-                    store.importAudio(for: selectedIndex, url: url)
-                    padName = url.deletingPathExtension().lastPathComponent
-                    url.stopAccessingSecurityScopedResource()
-                }
-            case .failure(let err):
-                print("[FileImporter] Error: \(err)")
+            if case .success(let urls) = result, let first = urls.first {
+                store.importCustomAudioURL(first, for: currentPad.index)
             }
         }
-        .confirmationDialog("Swap Pad #\(selectedIndex + 1) With...", isPresented: $isShowingSwapPicker, titleVisibility: .visible) {
-            ForEach(0..<store.pads.count, id: \.self) { otherIdx in
-                if otherIdx != selectedIndex {
-                    Button("Pad #\(otherIdx + 1): \(store.pads[otherIdx].name)") {
-                        store.swapPads(index1: selectedIndex, index2: otherIdx)
-                        loadPadData(at: selectedIndex)
+    }
+
+    private func miniSceneGrid(title: String, range: Range<Int>, currentPad: Pad) -> some View {
+        let cols = Array(repeating: GridItem(.flexible(), spacing: 4), count: 3)
+        return VStack(spacing: 4) {
+            Text(title)
+                .font(.system(size: 10, weight: .black))
+                .foregroundColor(AppTheme.textSecondary)
+            LazyVGrid(columns: cols, spacing: 4) {
+                ForEach(Array(range), id: \.self) { idx in
+                    if idx < store.pads.count {
+                        let p = store.pads[idx]
+                        let isSel = p.id == currentPad.id
+                        Button(action: {
+                            if let srcIdx = store.swapSourcePadIndex {
+                                store.swapPads(fromIndex: srcIdx, toIndex: idx)
+                            } else if isDuplicateMode {
+                                store.duplicatePad(sourceIndex: currentPad.index, targetIndex: idx)
+                                isDuplicateMode = false
+                            } else {
+                                store.selectPadForEdit(p)
+                                store.triggerPad(index: idx)
+                            }
+                        }) {
+                            VStack(spacing: 1) {
+                                Text("\(idx + 1)")
+                                    .font(.system(size: 9, weight: .black))
+                                Text(p.name)
+                                    .font(.system(size: 7, weight: .medium))
+                                    .lineLimit(1)
+                            }
+                            .foregroundColor(.white)
+                            .frame(maxWidth: .infinity)
+                            .frame(height: 36)
+                            .background(
+                                RoundedRectangle(cornerRadius: 6)
+                                    .fill(Color(hex: p.colorHex).opacity(isSel ? 0.95 : 0.38))
+                                    .overlay(
+                                        RoundedRectangle(cornerRadius: 6)
+                                            .stroke(isSel ? AppTheme.accentYellow : .white.opacity(0.25), lineWidth: isSel ? 2 : 1)
+                                    )
+                            )
+                        }
+                        .buttonStyle(.plain)
                     }
                 }
             }
+            .padding(6)
+            .background(RoundedRectangle(cornerRadius: 12).fill(AppTheme.navyCard))
         }
-    }
-
-    private func loadPadData(at index: Int) {
-        guard index >= 0 && index < store.pads.count else { return }
-        let pad = store.pads[index]
-        self.padName = pad.name
-        self.volume = pad.volume
-        self.pitch = pad.pitch
-        self.pan = pad.pan
-    }
-
-    private func savePadChanges() {
-        store.updatePadProperties(
-            index: selectedIndex,
-            name: padName,
-            volume: volume,
-            pitch: pitch,
-            pan: pan
-        )
-    }
-
-    private func duplicatePad() {
-        let nextIndex = (selectedIndex + 1) % store.pads.count
-        store.updatePadProperties(
-            index: nextIndex,
-            name: "\(padName) (Copy)",
-            volume: volume,
-            pitch: pitch,
-            pan: pan
-        )
-        selectedIndex = nextIndex
-        loadPadData(at: nextIndex)
     }
 }
 
-// -------------------------------------------------------------
-// PROJECT EDITOR SCREEN (Custom Sound Packs)
-// -------------------------------------------------------------
 public struct ProjectEditorView: View {
     public var store: DrumPadsStore
-    @State private var projectName: String = "My Custom Pack"
-    @State private var selectedGenre: Genre = .edm
-    @State private var bpm: Int = 120
+    @State private var packTitle: String = "My Custom Kit"
+    @State private var selectedGenre: MusicGenre = .trap
+    @State private var bpm: Int = 128
+
+    public init(store: DrumPadsStore) {
+        self.store = store
+    }
 
     public var body: some View {
-        ScrollView(.vertical, showsIndicators: false) {
-            VStack(alignment: .leading, spacing: 20) {
-                // Header
-                HStack {
-                    Button(action: { store.navigateTo(.main) }) {
-                        Image(systemName: "arrow.left")
-                            .font(.system(size: 18, weight: .bold))
-                            .foregroundColor(AppTheme.textPrimary)
-                    }
-
-                    Text("Custom Sound Pack Editor")
+        VStack(spacing: 18) {
+            HStack {
+                Button(action: { store.navigateTo(.main) }) {
+                    Image(systemName: "arrow.left")
                         .font(.system(size: 18, weight: .bold))
-                        .foregroundColor(AppTheme.textPrimary)
-
-                    Spacer()
-
-                    Button(action: {
-                        let newPack = SoundPackItem(
-                            title: projectName,
-                            subtitle: "Custom User Kit",
-                            genre: selectedGenre.rawValue,
-                            bpm: bpm,
-                            gradientHexes: ["#FF2A85", "#00DFD8"],
-                            author: store.userProfile.userName
-                        )
-                        store.soundPacks.insert(newPack, at: 0)
-                        store.openPadPlayer(packName: projectName)
-                    }) {
-                        Text("Create")
-                            .font(.system(size: 14, weight: .bold))
-                            .foregroundColor(AppTheme.accentCyan)
-                    }
+                        .foregroundColor(.white)
+                        .frame(width: 36, height: 36)
+                        .background(Circle().fill(AppTheme.navyCard))
                 }
-                .padding(.horizontal, 16)
-                .padding(.top, 12)
+                Spacer()
+                Text("CREATE SOUND PACK")
+                    .font(.system(size: 16, weight: .black))
+                    .foregroundColor(AppTheme.accentYellow)
+                Spacer()
+                Spacer().frame(width: 36)
+            }
+            .padding(.horizontal, 16)
+            .padding(.top, 12)
 
-                // Project Details
-                VStack(spacing: 16) {
-                    VStack(alignment: .leading, spacing: 6) {
-                        Text("Sound Pack Name")
-                            .font(.system(size: 12))
-                            .foregroundColor(AppTheme.textSecondary)
-                        TextField("Pack Title", text: $projectName)
-                            .padding(12)
-                            .background(
-                                RoundedRectangle(cornerRadius: 10)
-                                    .fill(AppTheme.navyCardElevated)
-                                    .overlay(RoundedRectangle(cornerRadius: 10).stroke(AppTheme.navyBorder, lineWidth: 1))
-                            )
-                            .foregroundColor(.white)
-                    }
+            VStack(alignment: .leading, spacing: 14) {
+                Text("PACK NAME")
+                    .font(.system(size: 11, weight: .bold))
+                    .foregroundColor(AppTheme.textSecondary)
+                TextField("Enter Sound Pack Name", text: $packTitle)
+                    .font(.system(size: 16, weight: .bold))
+                    .foregroundColor(.white)
+                    .padding(14)
+                    .background(RoundedRectangle(cornerRadius: 12).fill(AppTheme.navySurface))
 
-                    // Genre Picker
-                    VStack(alignment: .leading, spacing: 6) {
-                        Text("Musical Genre")
-                            .font(.system(size: 12))
-                            .foregroundColor(AppTheme.textSecondary)
-                        Picker("Genre", selection: $selectedGenre) {
-                            ForEach(Genre.allCases.filter { $0 != .all }) { g in
-                                Text(g.rawValue).tag(g)
+                Text("BASE GENRE TEMPLATE (24 PADS)")
+                    .font(.system(size: 11, weight: .bold))
+                    .foregroundColor(AppTheme.textSecondary)
+                ScrollView(.horizontal, showsIndicators: false) {
+                    HStack(spacing: 8) {
+                        ForEach(MusicGenre.allCases.filter { $0 != .all }, id: \.self) { g in
+                            let sel = selectedGenre == g
+                            Button(action: { selectedGenre = g }) {
+                                Text(g.displayName)
+                                    .font(.system(size: 12, weight: .bold))
+                                    .foregroundColor(sel ? .black : .white)
+                                    .padding(.horizontal, 14)
+                                    .padding(.vertical, 8)
+                                    .background(Capsule().fill(sel ? AppTheme.accentCyan : AppTheme.navySurface))
                             }
                         }
-                        .pickerStyle(.segmented)
-                    }
-
-                    // BPM
-                    HStack {
-                        Text("Default BPM: \(bpm)")
-                            .font(.system(size: 14, weight: .semibold))
-                            .foregroundColor(.white)
-                        Spacer()
-                        Stepper("", value: $bpm, in: 60...200)
                     }
                 }
-                .padding(16)
-                .background(
-                    RoundedRectangle(cornerRadius: 18)
-                        .fill(AppTheme.navyCard)
-                        .overlay(RoundedRectangle(cornerRadius: 18).stroke(AppTheme.navyBorder, lineWidth: 1))
-                )
-                .padding(.horizontal, 16)
 
-                // Quick Pad Assignment Guide
-                VStack(alignment: .leading, spacing: 10) {
-                    Text("PAD MAPPING PREVIEW")
+                HStack {
+                    Text("DEFAULT TEMPO")
                         .font(.system(size: 11, weight: .bold))
                         .foregroundColor(AppTheme.textSecondary)
-                        .padding(.horizontal, 16)
-
-                    VStack(spacing: 8) {
-                        ForEach(store.pads.prefix(6)) { pad in
-                            HStack {
-                                Text("\(pad.index + 1)")
-                                    .font(.system(size: 11, weight: .bold))
-                                    .foregroundColor(.white)
-                                    .frame(width: 26, height: 26)
-                                    .background(RoundedRectangle(cornerRadius: 6).fill(Color(hex: pad.colorHex)))
-
-                                Text(pad.name)
-                                    .font(.system(size: 13))
-                                    .foregroundColor(.white)
-
-                                Spacer()
-
-                                Text(pad.group.rawValue)
-                                    .font(.system(size: 11, weight: .semibold))
-                                    .foregroundColor(AppTheme.accentYellow)
-                            }
-                            .padding(.horizontal, 12)
-                            .padding(.vertical, 8)
-                            .background(RoundedRectangle(cornerRadius: 10).fill(AppTheme.navyCardElevated))
-                        }
+                    Spacer()
+                    Button(action: { bpm = max(60, bpm - 4) }) {
+                        Image(systemName: "minus.circle.fill").foregroundColor(.white)
                     }
-                    .padding(.horizontal, 16)
+                    Text("\(bpm) BPM")
+                        .font(.system(size: 14, weight: .black, design: .monospaced))
+                        .foregroundColor(AppTheme.accentYellow)
+                        .padding(.horizontal, 8)
+                    Button(action: { bpm = min(200, bpm + 4) }) {
+                        Image(systemName: "plus.circle.fill").foregroundColor(.white)
+                    }
                 }
             }
-            .padding(.bottom, 40)
+            .padding(16)
+            .background(RoundedRectangle(cornerRadius: 18).fill(AppTheme.navyCard))
+            .padding(.horizontal, 16)
+
+            Button(action: {
+                store.createCustomSoundPack(title: packTitle, genre: selectedGenre, bpm: bpm)
+            }) {
+                Text("CREATE PACK & OPEN PAD EDITOR")
+                    .font(.system(size: 14, weight: .black))
+                    .foregroundColor(.black)
+                    .frame(maxWidth: .infinity)
+                    .padding(.vertical, 16)
+                    .background(Capsule().fill(AppTheme.accentYellow))
+            }
+            .padding(.horizontal, 16)
+
+            Spacer()
         }
         .background(AppTheme.navyBackground.ignoresSafeArea())
     }
 }
-

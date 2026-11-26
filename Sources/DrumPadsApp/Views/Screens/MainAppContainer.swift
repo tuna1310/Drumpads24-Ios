@@ -13,7 +13,6 @@ public struct MainAppContainer: View {
             switch store.activeScreen {
             case .main:
                 ZStack(alignment: .bottom) {
-                    // Main Tab Screens
                     Group {
                         switch store.selectedTab {
                         case .sounds:
@@ -28,14 +27,14 @@ public struct MainAppContainer: View {
                     }
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
 
-                    // Floating Bottom Stack: Mini Player + Bottom Nav Bar
                     VStack(spacing: 4) {
                         if let track = store.miniPlayerTrack {
                             MiniPlayerBar(
                                 trackTitle: track,
                                 duration: store.miniPlayerDuration,
                                 isPlaying: store.isMiniPlayerPlaying,
-                                onTogglePlay: { store.toggleMiniPlayer() }
+                                onTogglePlay: { store.toggleMiniPlayer() },
+                                onNext: { store.nextMiniPlayerTrack() }
                             )
                             .transition(.move(edge: .bottom).combined(with: .opacity))
                         }
@@ -72,13 +71,24 @@ public struct MainAppContainer: View {
                 PadEditorScreen(store: store)
                     .transition(.move(edge: .bottom))
 
+            case .soundEditor:
+                SoundEditorScreen(store: store)
+                    .transition(.move(edge: .trailing))
+
+            case .clipEditor:
+                ClipEditorScreen(store: store)
+                    .transition(.move(edge: .trailing))
+
             case .projectEditor:
                 ProjectEditorView(store: store)
                     .transition(.move(edge: .bottom))
+
+            case .recordings:
+                RecordingsScreen(store: store)
+                    .transition(.move(edge: .trailing))
             }
         }
         .animation(.easeInOut(duration: 0.22), value: store.activeScreen)
         .preferredColorScheme(.dark)
     }
 }
-

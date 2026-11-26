@@ -1,6 +1,16 @@
 import Foundation
 
-public struct UserProfile: Sendable {
+public struct RecordedPadEvent: Codable, Hashable, Sendable {
+    public let padIndex: Int
+    public let timestampMs: Int64
+
+    public init(padIndex: Int, timestampMs: Int64) {
+        self.padIndex = padIndex
+        self.timestampMs = timestampMs
+    }
+}
+
+public struct UserProfile: Codable, Sendable {
     public var userName: String
     public var userBio: String
     public var userLink: String
@@ -28,31 +38,36 @@ public struct UserProfile: Sendable {
     }
 }
 
-public struct RecordingItem: Identifiable, Hashable, Sendable {
+public struct RecordingItem: Identifiable, Hashable, Codable, Sendable {
     public let id: String
-    public let title: String
+    public var title: String
     public let date: Date
     public let durationFormatted: String
+    public let durationMs: Int64
     public let packName: String
     public let bpm: Int
     public let fileURL: URL?
+    public let padEvents: [RecordedPadEvent]
 
     public init(
         id: String = UUID().uuidString,
         title: String,
         date: Date = Date(),
         durationFormatted: String = "00:45",
-        packName: String = "Neon Pulse 24",
-        bpm: Int = 120,
-        fileURL: URL? = nil
+        durationMs: Int64 = 0,
+        packName: String = "FESTIVAL EDM",
+        bpm: Int = 128,
+        fileURL: URL? = nil,
+        padEvents: [RecordedPadEvent] = []
     ) {
         self.id = id
         self.title = title
         self.date = date
         self.durationFormatted = durationFormatted
+        self.durationMs = durationMs
         self.packName = packName
         self.bpm = bpm
         self.fileURL = fileURL
+        self.padEvents = padEvents
     }
 }
-

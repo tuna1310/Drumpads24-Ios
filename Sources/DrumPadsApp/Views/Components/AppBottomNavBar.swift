@@ -91,12 +91,14 @@ public struct MiniPlayerBar: View {
     public let duration: String
     public let isPlaying: Bool
     public let onTogglePlay: () -> Void
+    public let onNext: () -> Void
 
-    public init(trackTitle: String, duration: String, isPlaying: Bool, onTogglePlay: @escaping () -> Void) {
+    public init(trackTitle: String, duration: String, isPlaying: Bool, onTogglePlay: @escaping () -> Void, onNext: @escaping () -> Void = {}) {
         self.trackTitle = trackTitle
         self.duration = duration
         self.isPlaying = isPlaying
         self.onTogglePlay = onTogglePlay
+        self.onNext = onNext
     }
 
     public var body: some View {
@@ -127,9 +129,13 @@ public struct MiniPlayerBar: View {
 
             Spacer()
 
-            Image(systemName: "waveform")
-                .font(.system(size: 16))
-                .foregroundColor(isPlaying ? AppTheme.accentCyan : AppTheme.textMuted)
+            Button(action: onNext) {
+                Image(systemName: "forward.end.fill")
+                    .font(.system(size: 15, weight: .bold))
+                    .foregroundColor(AppTheme.accentCyan)
+                    .padding(6)
+            }
+            .buttonStyle(.plain)
         }
         .padding(.horizontal, 14)
         .padding(.vertical, 8)

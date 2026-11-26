@@ -9,184 +9,129 @@ public struct AccountScreen: View {
 
     public var body: some View {
         ScrollView(.vertical, showsIndicators: false) {
-            VStack(alignment: .leading, spacing: 18) {
-                // 1. Header
+            VStack(spacing: 20) {
+                // Header
                 HStack {
+                    Text("Account")
+                        .font(.system(size: 24, weight: .black))
+                        .foregroundColor(.white)
+                    Spacer()
+                    Button(action: { store.navigateTo(.settings) }) {
+                        Image(systemName: "gearshape.fill")
+                            .font(.system(size: 18))
+                            .foregroundColor(.white)
+                            .frame(width: 40, height: 40)
+                            .background(Circle().fill(AppTheme.navyCard))
+                    }
+                }
+                .padding(.horizontal, 16)
+                .padding(.top, 10)
+
+                // Profile Card
+                VStack(spacing: 14) {
+                    Circle()
+                        .fill(AppTheme.studioCardGradient)
+                        .frame(width: 78, height: 78)
+                        .overlay(
+                            Text(String(store.userProfile.userName.prefix(2)).uppercased())
+                                .font(.system(size: 26, weight: .black))
+                                .foregroundColor(.white)
+                        )
+
                     Text(store.userProfile.userName)
                         .font(.system(size: 20, weight: .bold))
-                        .foregroundColor(AppTheme.textPrimary)
+                        .foregroundColor(.white)
 
-                    Spacer()
+                    Text(store.userProfile.userBio)
+                        .font(.system(size: 13))
+                        .foregroundColor(AppTheme.textSecondary)
+                        .multilineTextAlignment(.center)
 
-                    HStack(spacing: 8) {
-                        Button(action: { store.navigateTo(.editProfile) }) {
-                            Image(systemName: "pencil")
-                                .font(.system(size: 15))
-                                .foregroundColor(AppTheme.textPrimary)
-                                .frame(width: 36, height: 36)
-                                .background(Circle().fill(AppTheme.navyCard))
-                        }
-
-                        Button(action: { store.navigateTo(.settings) }) {
-                            Image(systemName: "gearshape.fill")
-                                .font(.system(size: 15))
-                                .foregroundColor(AppTheme.textPrimary)
-                                .frame(width: 36, height: 36)
-                                .background(Circle().fill(AppTheme.navyCard))
-                        }
-
-                        Button(action: { store.navigateTo(.paywall) }) {
-                            Image(systemName: "magnifyingglass")
-                                .font(.system(size: 15))
-                                .foregroundColor(AppTheme.textPrimary)
-                                .frame(width: 36, height: 36)
-                                .background(Circle().fill(AppTheme.navyCard))
-                        }
+                    HStack(spacing: 26) {
+                        statCol("\(store.recordings.count)", "Tracks")
+                        statCol("\(store.customPacks.count)", "Custom Kits")
+                        statCol("\(store.userProfile.followersCount)", "Followers")
+                        statCol("\(store.userProfile.followingCount)", "Following")
                     }
-                }
-                .padding(.horizontal, 16)
-                .padding(.top, 8)
+                    .padding(.top, 4)
 
-                // 2. Profile Card
-                HStack(spacing: 16) {
-                    ZStack {
-                        Circle()
-                            .fill(AppTheme.accentYellow)
-                            .frame(width: 64, height: 64)
-
-                        Image(systemName: "person.fill")
-                            .font(.system(size: 30))
+                    Button(action: { store.navigateTo(.editProfile) }) {
+                        Text("Edit Profile")
+                            .font(.system(size: 13, weight: .bold))
                             .foregroundColor(.black)
+                            .padding(.horizontal, 24)
+                            .padding(.vertical, 10)
+                            .background(Capsule().fill(AppTheme.accentYellow))
                     }
-
-                    VStack(alignment: .leading, spacing: 4) {
-                        Text(store.userProfile.userName)
-                            .font(.system(size: 18, weight: .bold))
-                            .foregroundColor(AppTheme.textPrimary)
-
-                        Text("\(store.userProfile.followersCount) Followers   \(store.userProfile.followingCount) Following")
-                            .font(.system(size: 13))
-                            .foregroundColor(AppTheme.textSecondary)
-
-                        if !store.userProfile.userBio.isEmpty {
-                            Text(store.userProfile.userBio)
-                                .font(.system(size: 12))
-                                .foregroundColor(AppTheme.textMuted)
-                        }
-                    }
-
-                    Spacer()
                 }
-                .padding(16)
-                .background(
-                    RoundedRectangle(cornerRadius: 20)
-                        .fill(AppTheme.navyCard)
-                        .overlay(
-                            RoundedRectangle(cornerRadius: 20)
-                                .stroke(AppTheme.navyBorder, lineWidth: 1)
-                        )
-                )
+                .frame(maxWidth: .infinity)
+                .padding(20)
+                .background(RoundedRectangle(cornerRadius: 22).fill(AppTheme.navyCard))
                 .padding(.horizontal, 16)
 
-                // 3. VIP Membership Banner
-                Button(action: { store.navigateTo(.paywall) }) {
-                    HStack(spacing: 14) {
-                        ZStack {
-                            Circle()
-                                .fill(AppTheme.brandPinkCyan)
-                                .frame(width: 44, height: 44)
-                            Image(systemName: "crown.fill")
-                                .font(.system(size: 20))
-                                .foregroundColor(.white)
-                        }
-
-                        VStack(alignment: .leading, spacing: 2) {
-                            Text("Upgrade to VIP")
-                                .font(.system(size: 15, weight: .bold))
-                                .foregroundColor(.white)
-                            Text("Unlock 15,000+ sounds, presets & effects")
-                                .font(.system(size: 11))
-                                .foregroundColor(AppTheme.textSecondary)
-                        }
-
-                        Spacer()
-
-                        Image(systemName: "chevron.right")
-                            .foregroundColor(AppTheme.accentCyan)
+                // Action Links
+                VStack(spacing: 10) {
+                    accountRow(icon: "waveform", title: "My WAV & Video Recordings", badge: "\(store.recordings.count)") {
+                        store.navigateTo(.recordings)
                     }
-                    .padding(14)
-                    .background(
-                        RoundedRectangle(cornerRadius: 18)
-                            .fill(Color(hex: "#1A1535"))
-                            .overlay(
-                                RoundedRectangle(cornerRadius: 18)
-                                    .stroke(Color(hex: "#FF2A85").opacity(0.4), lineWidth: 1)
-                            )
-                    )
-                    .padding(.horizontal, 16)
-                }
-                .buttonStyle(.plain)
-
-                // 4. User's Tracks & Activity Section
-                VStack(alignment: .leading, spacing: 12) {
-                    Text("My Beat Creations (\(store.recordings.count))")
-                        .font(.system(size: 17, weight: .bold))
-                        .foregroundColor(AppTheme.textPrimary)
-                        .padding(.horizontal, 16)
-
-                    if store.recordings.isEmpty {
-                        Text("You haven't recorded any beats yet. Go to Pad Player and hit Record to build your discography!")
-                            .font(.system(size: 13))
-                            .foregroundColor(AppTheme.textSecondary)
-                            .padding(.horizontal, 16)
-                    } else {
-                        ForEach(store.recordings) { rec in
-                            HStack {
-                                Image(systemName: "waveform")
-                                    .font(.system(size: 20))
-                                    .foregroundColor(AppTheme.accentCyan)
-                                    .frame(width: 40, height: 40)
-                                    .background(Circle().fill(AppTheme.navyCardElevated))
-
-                                VStack(alignment: .leading, spacing: 2) {
-                                    Text(rec.title)
-                                        .font(.system(size: 14, weight: .semibold))
-                                        .foregroundColor(AppTheme.textPrimary)
-                                    Text("\(rec.durationFormatted) • \(rec.packName)")
-                                        .font(.system(size: 11))
-                                        .foregroundColor(AppTheme.textSecondary)
-                                }
-
-                                Spacer()
-
-                                Button(action: { store.shareRecording(rec) }) {
-                                    Image(systemName: "square.and.arrow.up")
-                                        .foregroundColor(AppTheme.accentYellow)
-                                }
-                            }
-                            .padding(12)
-                            .background(
-                                RoundedRectangle(cornerRadius: 14)
-                                    .fill(AppTheme.navyCard)
-                                    .overlay(
-                                        RoundedRectangle(cornerRadius: 14)
-                                            .stroke(AppTheme.navyBorder, lineWidth: 1)
-                                    )
-                            )
-                            .padding(.horizontal, 16)
-                        }
+                    accountRow(icon: "square.grid.2x2.fill", title: "Create Custom Sound Pack", badge: nil) {
+                        store.navigateTo(.projectEditor)
+                    }
+                    accountRow(icon: "clock.fill", title: "Recently Played Kits", badge: "\(store.recentlyUsedPacks.count)") {
+                        store.navigateTo(.recentlyUsed)
+                    }
+                    accountRow(icon: "slider.horizontal.3", title: "Audio Engine & Latency Settings", badge: nil) {
+                        store.navigateTo(.settings)
                     }
                 }
+                .padding(.horizontal, 16)
             }
-            .padding(.bottom, 100)
+            .padding(.bottom, 140)
         }
         .background(AppTheme.navyBackground.ignoresSafeArea())
     }
+
+    private func statCol(_ val: String, _ label: String) -> some View {
+        VStack(spacing: 2) {
+            Text(val)
+                .font(.system(size: 17, weight: .black))
+                .foregroundColor(.white)
+            Text(label)
+                .font(.system(size: 11))
+                .foregroundColor(AppTheme.textSecondary)
+        }
+    }
+
+    private func accountRow(icon: String, title: String, badge: String?, action: @escaping () -> Void) -> some View {
+        Button(action: action) {
+            HStack(spacing: 12) {
+                Image(systemName: icon)
+                    .font(.system(size: 16))
+                    .foregroundColor(AppTheme.accentYellow)
+                    .frame(width: 30)
+                Text(title)
+                    .font(.system(size: 14, weight: .semibold))
+                    .foregroundColor(.white)
+                Spacer()
+                if let badge = badge {
+                    Text(badge)
+                        .font(.system(size: 11, weight: .bold))
+                        .foregroundColor(.black)
+                        .padding(.horizontal, 8)
+                        .padding(.vertical, 3)
+                        .background(Capsule().fill(AppTheme.accentCyan))
+                }
+                Image(systemName: "chevron.right")
+                    .font(.system(size: 12))
+                    .foregroundColor(AppTheme.textSecondary)
+            }
+            .padding(14)
+            .background(RoundedRectangle(cornerRadius: 16).fill(AppTheme.navyCard))
+        }
+        .buttonStyle(.plain)
+    }
 }
 
-// -------------------------------------------------------------
-// EDIT PROFILE SCREEN
-// -------------------------------------------------------------
 public struct EditProfileScreen: View {
     public var store: DrumPadsStore
     @State private var name: String = ""
@@ -195,113 +140,59 @@ public struct EditProfileScreen: View {
 
     public init(store: DrumPadsStore) {
         self.store = store
-        _name = State(initialValue: store.userProfile.userName)
-        _bio = State(initialValue: store.userProfile.userBio)
-        _link = State(initialValue: store.userProfile.userLink)
     }
 
     public var body: some View {
-        ScrollView(.vertical, showsIndicators: false) {
-            VStack(spacing: 24) {
-                // Header
-                HStack {
-                    Button(action: { store.navigateTo(.main) }) {
-                        Image(systemName: "arrow.left")
-                            .font(.system(size: 18, weight: .bold))
-                            .foregroundColor(AppTheme.textPrimary)
-                    }
-
-                    Spacer()
-
-                    Text("Edit profile")
+        VStack(spacing: 16) {
+            HStack {
+                Button(action: { store.navigateTo(.main) }) {
+                    Image(systemName: "arrow.left")
                         .font(.system(size: 18, weight: .bold))
-                        .foregroundColor(AppTheme.textPrimary)
-
-                    Spacer()
-
-                    Button(action: {
-                        store.updateProfile(name: name, bio: bio, link: link)
-                        store.navigateTo(.main)
-                    }) {
-                        Image(systemName: "checkmark")
-                            .font(.system(size: 18, weight: .bold))
-                            .foregroundColor(AppTheme.accentCyan)
-                    }
+                        .foregroundColor(.white)
                 }
-                .padding(.horizontal, 16)
-                .padding(.top, 12)
-
-                // Avatar
-                ZStack(alignment: .bottomTrailing) {
-                    Circle()
-                        .fill(AppTheme.accentYellow)
-                        .frame(width: 90, height: 90)
-                        .overlay(
-                            Image(systemName: "person.fill")
-                                .font(.system(size: 44))
-                                .foregroundColor(.black)
-                        )
-
-                    Circle()
-                        .fill(AppTheme.navyCardElevated)
-                        .frame(width: 28, height: 28)
-                        .overlay(
-                            Image(systemName: "camera.fill")
-                                .font(.system(size: 13))
-                                .foregroundColor(.white)
-                        )
-                        .overlay(Circle().stroke(AppTheme.navyBackground, lineWidth: 2))
+                Spacer()
+                Text("Edit Profile")
+                    .font(.system(size: 18, weight: .bold))
+                    .foregroundColor(.white)
+                Spacer()
+                Button("Save") {
+                    store.updateUserProfile(name: name, bio: bio, link: link)
+                    store.navigateTo(.main)
                 }
-                .padding(.top, 12)
-
-                // Fields
-                VStack(spacing: 16) {
-                    VStack(alignment: .leading, spacing: 6) {
-                        Text("Name")
-                            .font(.system(size: 12))
-                            .foregroundColor(AppTheme.textSecondary)
-                        TextField("Your Name", text: $name)
-                            .padding(14)
-                            .background(
-                                RoundedRectangle(cornerRadius: 12)
-                                    .fill(AppTheme.navyCard)
-                                    .overlay(RoundedRectangle(cornerRadius: 12).stroke(AppTheme.navyBorder, lineWidth: 1))
-                            )
-                            .foregroundColor(.white)
-                    }
-
-                    VStack(alignment: .leading, spacing: 6) {
-                        Text("A few words about yourself")
-                            .font(.system(size: 12))
-                            .foregroundColor(AppTheme.textSecondary)
-                        TextField("Bio", text: $bio)
-                            .padding(14)
-                            .background(
-                                RoundedRectangle(cornerRadius: 12)
-                                    .fill(AppTheme.navyCard)
-                                    .overlay(RoundedRectangle(cornerRadius: 12).stroke(AppTheme.navyBorder, lineWidth: 1))
-                            )
-                            .foregroundColor(.white)
-                    }
-
-                    VStack(alignment: .leading, spacing: 6) {
-                        Text("Social / Instagram link")
-                            .font(.system(size: 12))
-                            .foregroundColor(AppTheme.textSecondary)
-                        TextField("https://...", text: $link)
-                            .padding(14)
-                            .background(
-                                RoundedRectangle(cornerRadius: 12)
-                                    .fill(AppTheme.navyCard)
-                                    .overlay(RoundedRectangle(cornerRadius: 12).stroke(AppTheme.navyBorder, lineWidth: 1))
-                            )
-                            .foregroundColor(.white)
-                    }
-                }
-                .padding(.horizontal, 16)
+                .font(.system(size: 14, weight: .bold))
+                .foregroundColor(AppTheme.accentYellow)
             }
+            .padding(.horizontal, 16)
+            .padding(.top, 12)
+
+            VStack(alignment: .leading, spacing: 12) {
+                Text("DISPLAY NAME").font(.system(size: 11, weight: .bold)).foregroundColor(AppTheme.textSecondary)
+                TextField("Name", text: $name)
+                    .padding(12)
+                    .background(RoundedRectangle(cornerRadius: 12).fill(AppTheme.navyCard))
+                    .foregroundColor(.white)
+
+                Text("BIO").font(.system(size: 11, weight: .bold)).foregroundColor(AppTheme.textSecondary)
+                TextField("Bio", text: $bio)
+                    .padding(12)
+                    .background(RoundedRectangle(cornerRadius: 12).fill(AppTheme.navyCard))
+                    .foregroundColor(.white)
+
+                Text("SOCIAL LINK").font(.system(size: 11, weight: .bold)).foregroundColor(AppTheme.textSecondary)
+                TextField("Link", text: $link)
+                    .padding(12)
+                    .background(RoundedRectangle(cornerRadius: 12).fill(AppTheme.navyCard))
+                    .foregroundColor(.white)
+            }
+            .padding(.horizontal, 16)
+
+            Spacer()
         }
         .background(AppTheme.navyBackground.ignoresSafeArea())
+        .onAppear {
+            name = store.userProfile.userName
+            bio = store.userProfile.userBio
+            link = store.userProfile.userLink
+        }
     }
 }
-
