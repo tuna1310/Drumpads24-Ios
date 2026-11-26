@@ -12,7 +12,7 @@ public struct RecordingsScreen: View {
     public var body: some View {
         VStack(spacing: 0) {
             HStack {
-                Button(action: { store.navigateTo(.main) }) {
+                Button(action: { store.navigateBack() }) {
                     Image(systemName: "arrow.left")
                         .font(.system(size: 18, weight: .bold))
                         .foregroundColor(.white)

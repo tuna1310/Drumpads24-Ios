@@ -14,7 +14,7 @@ public struct PaywallScreen: View {
             VStack(spacing: 0) {
                 // Top Bar (Close and Restore)
                 HStack {
-                    Button(action: { store.navigateTo(.main) }) {
+                    Button(action: { store.navigateBack() }) {
                         Image(systemName: "xmark")
                             .font(.system(size: 16, weight: .bold))
                             .foregroundColor(AppTheme.textPrimary)
@@ -25,8 +25,9 @@ public struct PaywallScreen: View {
                     Spacer()
 
                     Button(action: {
-                        // Mock restore
-                        store.navigateTo(.main)
+                        store.userProfile.isProUser = true
+                        store.showStatus("✓ All Studio & Pro features are already unlocked!")
+                        store.navigateBack()
                     }) {
                         Text("Restore")
                             .font(.system(size: 14, weight: .semibold))
@@ -86,7 +87,7 @@ public struct PaywallScreen: View {
                 // Bottom Continue CTA Button
                 Button(action: {
                     store.userProfile.isProUser = true
-                    store.navigateTo(.main)
+                    store.navigateBack()
                 }) {
                     Text("Continue")
                         .font(.system(size: 16, weight: .bold))

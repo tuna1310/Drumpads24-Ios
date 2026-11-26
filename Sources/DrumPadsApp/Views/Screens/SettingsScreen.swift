@@ -13,7 +13,7 @@ public struct SettingsScreen: View {
             VStack(alignment: .leading, spacing: 18) {
                 // 1. Top Bar
                 HStack(spacing: 12) {
-                    Button(action: { store.navigateTo(.main) }) {
+                    Button(action: { store.navigateBack() }) {
                         Image(systemName: "arrow.left")
                             .font(.system(size: 18, weight: .bold))
                             .foregroundColor(AppTheme.textPrimary)

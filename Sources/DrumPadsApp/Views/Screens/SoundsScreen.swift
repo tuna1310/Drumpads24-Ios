@@ -125,20 +125,45 @@ public struct SoundsScreen: View {
                         }
                         .padding(.horizontal, 16)
 
-                        let columns = [GridItem(.flexible(), spacing: 12), GridItem(.flexible(), spacing: 12)]
-                        LazyVGrid(columns: columns, spacing: 12) {
-                            ForEach(store.filteredPacks) { pack in
-                                soundPackGridCard(pack)
+                        if store.filteredPacks.isEmpty {
+                            VStack(spacing: 10) {
+                                Image(systemName: "magnifyingglass")
+                                    .font(.system(size: 28))
+                                    .foregroundColor(AppTheme.accentCyan)
+                                Text("No sound packs found")
+                                    .font(.system(size: 15, weight: .bold))
+                                    .foregroundColor(.white)
+                                Text("Try clearing your search or switching back to All.")
+                                    .font(.system(size: 12))
+                                    .foregroundColor(AppTheme.textSecondary)
+                                Button("Reset Filters") {
+                                    store.searchQuery = ""
+                                    store.selectedGenreFilter = .all
+                                    isSearchVisible = false
+                                }
+                                .font(.system(size: 12, weight: .bold))
+                                .foregroundColor(.black)
+                                .padding(.horizontal, 16)
+                                .padding(.vertical, 8)
+                                .background(Capsule().fill(AppTheme.accentCyan))
                             }
+                            .frame(maxWidth: .infinity)
+                            .padding(.vertical, 28)
+                        } else {
+                            let columns = [GridItem(.flexible(), spacing: 12), GridItem(.flexible(), spacing: 12)]
+                            LazyVGrid(columns: columns, spacing: 12) {
+                                ForEach(store.filteredPacks) { pack in
+                                    soundPackGridCard(pack)
+                                }
+                            }
+                            .padding(.horizontal, 16)
                         }
-                        .padding(.horizontal, 16)
                     }
                 }
                 .padding(.bottom, 20)
             }
+            .background(AppTheme.navyBackground.ignoresSafeArea())
         }
-        .background(AppTheme.navyBackground.ignoresSafeArea())
-    }
 
     private func featuredStoryCard(_ pack: SoundPack) -> some View {
         let isPreviewing = store.previewingPackId == pack.id

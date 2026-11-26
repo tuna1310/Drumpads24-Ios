@@ -89,6 +89,28 @@ public struct MainAppContainer: View {
                 RecordingsScreen(store: store)
                     .transition(.move(edge: .trailing))
             }
+
+            if store.activeScreen != .padPlayer, let msg = store.statusBannerMessage {
+                VStack {
+                    Text(msg)
+                        .font(.system(size: 12, weight: .bold))
+                        .foregroundColor(.white)
+                        .padding(.horizontal, 16)
+                        .padding(.vertical, 10)
+                        .background(
+                            RoundedRectangle(cornerRadius: 14)
+                                .fill(AppTheme.navyCardElevated.opacity(0.96))
+                                .overlay(
+                                    RoundedRectangle(cornerRadius: 14)
+                                        .stroke(AppTheme.accentCyan, lineWidth: 1)
+                                )
+                        )
+                        .padding(.top, 10)
+                        .padding(.horizontal, 20)
+                    Spacer()
+                }
+                .transition(.opacity)
+            }
         }
         .animation(.easeInOut(duration: 0.22), value: store.activeScreen)
         .preferredColorScheme(.dark)

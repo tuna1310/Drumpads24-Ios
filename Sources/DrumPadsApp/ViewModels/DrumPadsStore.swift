@@ -30,6 +30,7 @@ public final class DrumPadsStore {
     // Navigation
     public var selectedTab: NavTab = .sounds
     public var activeScreen: AppScreen = .main
+    public var previousScreen: AppScreen = .main
     public var showMiniPlayer: Bool = true
     public var miniPlayerTrack: String? = "FESTIVAL EDM • Preview"
     public var miniPlayerDuration: String = "00:36"
@@ -126,10 +127,14 @@ public final class DrumPadsStore {
         if active {
             stressSecondsRemaining = 60
             xrunCount = 0
+            var tickCount = 0
             stressTimer = Timer.scheduledTimer(withTimeInterval: 0.25, repeats: true) { [weak self] t in
                 guard let self = self else { t.invalidate(); return }
                 self.engine.triggerPad(padIndex: Int.random(in: 0..<24))
-                self.stressSecondsRemaining = max(0, self.stressSecondsRemaining - 1)
+                tickCount += 1
+                if tickCount % 4 == 0 {
+                    self.stressSecondsRemaining = max(0, self.stressSecondsRemaining - 1)
+                }
                 if self.stressSecondsRemaining == 0 {
                     t.invalidate()
                     self.isStressTestActive = false
@@ -214,15 +219,44 @@ public final class DrumPadsStore {
     }
 
     // MARK: - Navigation
+    public func showStatus(_ message: String) {
+        statusBannerMessage = message
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2.8) { [weak self] in
+            if self?.statusBannerMessage == message {
+                self?.statusBannerMessage = nil
+            }
+        }
+    }
+
     public func navigateTo(_ screen: AppScreen) {
-        if activeScreen == .soundEditor {
-            // Stop previewing sound when leaving
+        if activeScreen == .padPlayer && isPadLockEnabled && screen != .padPlayer {
+            showStatus("🔒 Pads are locked — tap Lock icon to unlock")
+            return
+        }
+        let anchorScreens: [AppScreen] = [.main, .padPlayer, .padEditor]
+        if screen != activeScreen && anchorScreens.contains(activeScreen) {
+            previousScreen = activeScreen
         }
         activeScreen = screen
     }
 
+    public func navigateBack() {
+        switch activeScreen {
+        case .soundEditor:
+            navigateTo(.padEditor)
+        case .padEditor, .clipEditor:
+            navigateTo(.padPlayer)
+        case .settings, .paywall, .recordings:
+            activeScreen = (previousScreen == .padPlayer) ? .padPlayer : .main
+        default:
+            activeScreen = .main
+        }
+    }
+
     public func selectTab(_ tab: NavTab) {
         selectedTab = tab
+        activeScreen = .main
+        previousScreen = .main
     }
 
     public func openPadPlayer(packName: String) {
