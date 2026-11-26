@@ -9,44 +9,55 @@ public struct SoundsScreen: View {
     }
 
     public var body: some View {
-        ZStack(alignment: .bottomTrailing) {
-            ScrollView(.vertical, showsIndicators: false) {
-                VStack(alignment: .leading, spacing: 18) {
-                    // Header: EXPLORE SOUNDS + Search + Random
-                    HStack {
-                        VStack(alignment: .leading, spacing: 2) {
-                            Text("Explore Sounds")
-                                .font(.system(size: 24, weight: .black))
-                                .foregroundColor(.white)
-                            Text("12 Genres • Play, Preview & Create Custom Packs")
-                                .font(.system(size: 11, weight: .medium))
-                                .foregroundColor(AppTheme.textSecondary)
-                        }
-                        Spacer()
-                        Button(action: {
-                            withAnimation { isSearchVisible.toggle() }
-                        }) {
-                            Image(systemName: isSearchVisible ? "xmark" : "magnifyingglass")
-                                .font(.system(size: 16, weight: .bold))
-                                .foregroundColor(.white)
-                                .frame(width: 38, height: 38)
-                                .background(Circle().fill(AppTheme.navyCard))
-                        }
-                        Button(action: {
-                            if let randomPack = store.allPacks.randomElement() {
-                                store.loadSoundPack(randomPack)
-                                store.navigateTo(.padPlayer)
-                            }
-                        }) {
-                            Image(systemName: "shuffle")
-                                .font(.system(size: 16, weight: .bold))
-                                .foregroundColor(.black)
-                                .frame(width: 38, height: 38)
-                                .background(Circle().fill(AppTheme.accentYellow))
-                        }
+        ScrollView(.vertical, showsIndicators: false) {
+            VStack(alignment: .leading, spacing: 18) {
+                // Header: EXPLORE SOUNDS + Create + Search + Random
+                HStack(spacing: 8) {
+                    VStack(alignment: .leading, spacing: 2) {
+                        Text("Explore Sounds")
+                            .font(.system(size: 22, weight: .black))
+                            .foregroundColor(.white)
+                        Text("12 Genres • Play, Preview & Create")
+                            .font(.system(size: 11, weight: .medium))
+                            .foregroundColor(AppTheme.textSecondary)
                     }
-                    .padding(.horizontal, 16)
-                    .padding(.top, 10)
+                    Spacer()
+                    Button(action: { store.navigateTo(.projectEditor) }) {
+                        HStack(spacing: 4) {
+                            Image(systemName: "plus")
+                                .font(.system(size: 12, weight: .black))
+                            Text("Create")
+                                .font(.system(size: 12, weight: .black))
+                        }
+                        .foregroundColor(.black)
+                        .padding(.horizontal, 12)
+                        .padding(.vertical, 8)
+                        .background(Capsule().fill(AppTheme.accentYellow))
+                    }
+                    Button(action: {
+                        withAnimation { isSearchVisible.toggle() }
+                    }) {
+                        Image(systemName: isSearchVisible ? "xmark" : "magnifyingglass")
+                            .font(.system(size: 15, weight: .bold))
+                            .foregroundColor(.white)
+                            .frame(width: 36, height: 36)
+                            .background(Circle().fill(AppTheme.navyCard))
+                    }
+                    Button(action: {
+                        if let randomPack = store.allPacks.randomElement() {
+                            store.loadSoundPack(randomPack)
+                            store.navigateTo(.padPlayer)
+                        }
+                    }) {
+                        Image(systemName: "shuffle")
+                            .font(.system(size: 15, weight: .bold))
+                            .foregroundColor(.black)
+                            .frame(width: 36, height: 36)
+                            .background(Circle().fill(AppTheme.accentCyan))
+                    }
+                }
+                .padding(.horizontal, 16)
+                .padding(.top, 10)
 
                     if isSearchVisible {
                         HStack {
@@ -123,25 +134,8 @@ public struct SoundsScreen: View {
                         .padding(.horizontal, 16)
                     }
                 }
-                .padding(.bottom, 150)
+                .padding(.bottom, 20)
             }
-
-            // Yellow '+' FAB matching Google Play Store Reference ("CREATE SOUND PACKS")
-            Button(action: { store.navigateTo(.projectEditor) }) {
-                HStack(spacing: 6) {
-                    Image(systemName: "plus")
-                        .font(.system(size: 18, weight: .black))
-                    Text("CREATE")
-                        .font(.system(size: 12, weight: .black))
-                }
-                .foregroundColor(.black)
-                .padding(.horizontal, 16)
-                .padding(.vertical, 14)
-                .background(Capsule().fill(AppTheme.accentYellow))
-                .shadow(color: AppTheme.accentYellow.opacity(0.45), radius: 10)
-            }
-            .padding(.trailing, 18)
-            .padding(.bottom, 125)
         }
         .background(AppTheme.navyBackground.ignoresSafeArea())
     }

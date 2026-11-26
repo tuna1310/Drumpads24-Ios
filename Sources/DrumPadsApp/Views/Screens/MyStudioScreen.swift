@@ -157,7 +157,7 @@ public struct MyStudioScreen: View {
                     }
                 }
             }
-            .padding(.bottom, 140)
+            .padding(.bottom, 20)
         }
         .background(AppTheme.navyBackground.ignoresSafeArea())
     }

@@ -52,7 +52,7 @@ public struct FeedScreen: View {
                 }
                 .padding(.horizontal, 16)
             }
-            .padding(.bottom, 140)
+            .padding(.bottom, 20)
         }
         .background(AppTheme.navyBackground.ignoresSafeArea())
         .sheet(item: $commentingPost) { post in

@@ -12,7 +12,7 @@ public struct MainAppContainer: View {
 
             switch store.activeScreen {
             case .main:
-                ZStack(alignment: .bottom) {
+                VStack(spacing: 0) {
                     Group {
                         switch store.selectedTab {
                         case .sounds:
@@ -28,6 +28,7 @@ public struct MainAppContainer: View {
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
 
                     VStack(spacing: 4) {
+                        Divider().background(AppTheme.navyBorder)
                         if let track = store.miniPlayerTrack {
                             MiniPlayerBar(
                                 trackTitle: track,
@@ -44,6 +45,7 @@ public struct MainAppContainer: View {
                             onTabSelected: { store.selectTab($0) }
                         )
                     }
+                    .background(AppTheme.navySurface)
                 }
                 .transition(.opacity)
 
