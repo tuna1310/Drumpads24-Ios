@@ -63,8 +63,8 @@ public struct FeedScreen: View {
     private func feedPostCard(_ post: FeedPost) -> some View {
         let isPlaying = store.playingPostId == post.id
         return VStack(alignment: .leading, spacing: 12) {
-            // Author Header + Follow button
-            HStack(spacing: 10) {
+            // Author Header + CREW badge + Follow button aligned on the same top baseline
+            HStack(alignment: .center, spacing: 10) {
                 Circle()
                     .fill(post.avatarColor)
                     .frame(width: 40, height: 40)
@@ -75,33 +75,44 @@ public struct FeedScreen: View {
                     )
 
                 VStack(alignment: .leading, spacing: 2) {
-                    HStack(spacing: 6) {
-                        Text(post.authorName)
-                            .font(.system(size: 14, weight: .bold))
-                            .foregroundColor(.white)
-                        if post.isCrewTutorial {
-                            Text("CREW LESSON")
-                                .font(.system(size: 9, weight: .black))
-                                .foregroundColor(.black)
-                                .padding(.horizontal, 6)
-                                .padding(.vertical, 2)
-                                .background(Capsule().fill(AppTheme.accentYellow))
+                    HStack(alignment: .center, spacing: 6) {
+                        HStack(alignment: .center, spacing: 6) {
+                            Text(post.authorName)
+                                .font(.system(size: 14, weight: .bold))
+                                .foregroundColor(.white)
+                                .lineLimit(1)
+                                .truncationMode(.tail)
+                            if post.isCrewTutorial {
+                                Text("CREW")
+                                    .font(.system(size: 9, weight: .black))
+                                    .foregroundColor(.black)
+                                    .lineLimit(1)
+                                    .fixedSize(horizontal: true, vertical: false)
+                                    .padding(.horizontal, 6)
+                                    .padding(.vertical, 2)
+                                    .background(Capsule().fill(AppTheme.accentYellow))
+                            }
+                        }
+
+                        Spacer(minLength: 6)
+
+                        Button(action: { store.toggleFollowAuthor(postId: post.id) }) {
+                            Text(post.isFollowingAuthor ? "Following" : "Follow")
+                                .font(.system(size: 11, weight: .bold))
+                                .foregroundColor(post.isFollowingAuthor ? AppTheme.accentCyan : .black)
+                                .lineLimit(1)
+                                .fixedSize(horizontal: true, vertical: false)
+                                .padding(.horizontal, 12)
+                                .padding(.vertical, 5)
+                                .background(Capsule().fill(post.isFollowingAuthor ? AppTheme.navyCardElevated : AppTheme.accentCyan))
                         }
                     }
+
                     Text("\(post.authorHandle) • \(post.timeAgo)")
                         .font(.system(size: 11))
                         .foregroundColor(AppTheme.textSecondary)
-                }
-
-                Spacer()
-
-                Button(action: { store.toggleFollowAuthor(postId: post.id) }) {
-                    Text(post.isFollowingAuthor ? "Following" : "Follow")
-                        .font(.system(size: 11, weight: .bold))
-                        .foregroundColor(post.isFollowingAuthor ? AppTheme.accentCyan : .black)
-                        .padding(.horizontal, 12)
-                        .padding(.vertical, 6)
-                        .background(Capsule().fill(post.isFollowingAuthor ? AppTheme.navyCardElevated : AppTheme.accentCyan))
+                        .lineLimit(1)
+                        .truncationMode(.tail)
                 }
             }
 
